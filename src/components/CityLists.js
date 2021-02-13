@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 import {getCities} from '../actions';
 
@@ -11,7 +12,7 @@ const CityContainer = styled.ul`
     column-gap: 20px;
 `;
 
-const ListsOfCities = styled.li`
+const ListOfCities = styled.li`
     padding: 16px;
     background: #0F0E17;
     color: white;
@@ -30,12 +31,17 @@ function CityLists({cities, getCities}) {
             <h1>Where are you going?</h1>
 
             <nav>
-                <CityContainer>
-                    <ListsOfCities>Antananarivo</ListsOfCities>
-                    <ListsOfCities>Vatomandry</ListsOfCities>
-                    <ListsOfCities>Toamasina</ListsOfCities>
-                    <ListsOfCities>Moramanga</ListsOfCities>
-                </CityContainer>
+                {cities.map(city => {
+                    return (
+                        <CityContainer key={city.id}>
+                            <ListOfCities>
+                                <Link to={`/${city.destination}`}>
+                                    {city.destination}
+                                </Link>
+                            </ListOfCities>
+                        </CityContainer>
+                    )
+                })}
             </nav>
         </div>
     )

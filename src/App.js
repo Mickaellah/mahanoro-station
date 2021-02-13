@@ -5,7 +5,8 @@ import {
 	Route,
 } from 'react-router-dom';
 
-import CityLists from './components/CityLists'
+import CityLists from './components/CityLists';
+import CityInformation from './components/CityInforamation';
 
 export default function App() {
     return (
@@ -13,6 +14,9 @@ export default function App() {
             <Switch>
                 <Route exact path="/">
                     <CityLists />
+                </Route>
+                <Route exact path="/:destination">
+                    <CityInformation />
                 </Route>
             </Switch>
         </Router>

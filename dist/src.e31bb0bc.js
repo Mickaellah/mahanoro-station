@@ -38275,6 +38275,8 @@ var _reactRedux = require("react-redux");
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _reactRouterDom = require("react-router-dom");
+
 var _actions = require("../actions");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -38289,7 +38291,7 @@ const CityContainer = _styledComponents.default.ul`
     grid-column-gap: 20px;
     column-gap: 20px;
 `;
-const ListsOfCities = _styledComponents.default.li`
+const ListOfCities = _styledComponents.default.li`
     padding: 16px;
     background: #0F0E17;
     color: white;
@@ -38306,7 +38308,13 @@ function CityLists({
   (0, _react.useEffect)(() => {
     getCities();
   }, []);
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Where are you going?"), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement(CityContainer, null, /*#__PURE__*/_react.default.createElement(ListsOfCities, null, "Antananarivo"), /*#__PURE__*/_react.default.createElement(ListsOfCities, null, "Vatomandry"), /*#__PURE__*/_react.default.createElement(ListsOfCities, null, "Toamasina"), /*#__PURE__*/_react.default.createElement(ListsOfCities, null, "Moramanga"))));
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Where are you going?"), /*#__PURE__*/_react.default.createElement("nav", null, cities.map(city => {
+    return /*#__PURE__*/_react.default.createElement(CityContainer, {
+      key: city.id
+    }, /*#__PURE__*/_react.default.createElement(ListOfCities, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: `/${city.destination}`
+    }, city.destination)));
+  })));
 }
 
 const mapDispatchToProps = {
@@ -38318,7 +38326,84 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(CityLists);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js"}],"components/CityInforamation.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRedux = require("react-redux");
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _actions = require("../actions");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Container = _styledComponents.default.article`
+    display: flex;
+    justify-content: space-between;
+`;
+const Button = _styledComponents.default.button`
+    margin-block-start: 16px;
+    padding-inline: 32px;
+    height: 48px;
+    border: none;
+    background: #E53170;
+    color: white;
+`;
+const DepartureTime = _styledComponents.default.p`
+    color: orange;
+`;
+
+function CityInformation({
+  cities,
+  getCities
+}) {
+  console.log(cities);
+  (0, _react.useEffect)(() => {
+    getCities();
+  }, []);
+  const {
+    destination
+  } = (0, _reactRouterDom.useParams)();
+  const cityInformation = cities.filter(city => city.destination.toLowerCase() === destination.toLowerCase());
+  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h1", null, "Next trips to: ", destination), cityInformation.map(city => {
+    const availableSeats = city.seats.filter(seat => seat.isAvailable === true);
+    const miliseconds = city.departureTime * 1000;
+    const dateObject = new Date(miliseconds);
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(Container, {
+      key: city.id
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
+      weekday: "long"
+    })), /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
+      hour: "numeric"
+    }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, dateObject.toLocaleDateString()), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("small", null, availableSeats.length), " seats left")), /*#__PURE__*/_react.default.createElement(Button, {
+      type: "button"
+    }, "Book a seat")));
+  }));
+}
+
+const mapDispatchToProps = {
+  getCities: _actions.getCities
+};
+
+var _default = (0, _reactRedux.connect)(state => ({
+  cities: state.cities
+}), mapDispatchToProps)(CityInformation);
+
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38332,15 +38417,20 @@ var _reactRouterDom = require("react-router-dom");
 
 var _CityLists = _interopRequireDefault(require("./components/CityLists"));
 
+var _CityInforamation = _interopRequireDefault(require("./components/CityInforamation"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
   return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/"
-  }, /*#__PURE__*/_react.default.createElement(_CityLists.default, null))));
+  }, /*#__PURE__*/_react.default.createElement(_CityLists.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    exact: true,
+    path: "/:destination"
+  }, /*#__PURE__*/_react.default.createElement(_CityInforamation.default, null))));
 }
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/CityLists":"components/CityLists.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/CityLists":"components/CityLists.js","./components/CityInforamation":"components/CityInforamation.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

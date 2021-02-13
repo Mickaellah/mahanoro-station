@@ -19,6 +19,16 @@ const Button = styled.button`
     color: white;
 `;
 
+const ButtonDisabled = styled.button`
+    margin-block-start: 16px;
+    padding-inline: 32px;
+    height: 48px;
+    border: none;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), linear-gradient(0deg, #E53170, #E53170);
+    color: white;
+    cursor: not-allowed;
+`;
+
 const DepartureTime = styled.p`
     color: orange;
 `;
@@ -54,7 +64,10 @@ function CityInformation({cities, getCities}) {
                                 <p>{dateObject.toLocaleDateString()}</p>
                                 <p><small>{availableSeats.length}</small> seats left</p>
                             </div>
-                            <Button type="button">Book a seat</Button>
+                            {availableSeats.length > 0 
+                                ? <Button type="button">Book a seat</Button>
+                                : <ButtonDisabled type="button">Book a seat</ButtonDisabled>
+                            }
                         </Container>
                     </>
                 )

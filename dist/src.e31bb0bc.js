@@ -38362,6 +38362,15 @@ const Button = _styledComponents.default.button`
     background: #E53170;
     color: white;
 `;
+const ButtonDisabled = _styledComponents.default.button`
+    margin-block-start: 16px;
+    padding-inline: 32px;
+    height: 48px;
+    border: none;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), linear-gradient(0deg, #E53170, #E53170);
+    color: white;
+    cursor: not-allowed;
+`;
 const DepartureTime = _styledComponents.default.p`
     color: orange;
 `;
@@ -38388,7 +38397,9 @@ function CityInformation({
       weekday: "long"
     })), /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
       hour: "numeric"
-    }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, dateObject.toLocaleDateString()), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("small", null, availableSeats.length), " seats left")), /*#__PURE__*/_react.default.createElement(Button, {
+    }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, dateObject.toLocaleDateString()), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("small", null, availableSeats.length), " seats left")), availableSeats.length > 0 ? /*#__PURE__*/_react.default.createElement(Button, {
+      type: "button"
+    }, "Book a seat") : /*#__PURE__*/_react.default.createElement(ButtonDisabled, {
       type: "button"
     }, "Book a seat")));
   }));

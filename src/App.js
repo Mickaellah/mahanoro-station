@@ -7,6 +7,7 @@ import {
 
 import CityLists from './components/CityLists';
 import CityInformation from './components/CityInforamation';
+import SeatsInformation from './components/SeatsInformation';
 
 export default function App() {
     return (
@@ -17,6 +18,9 @@ export default function App() {
                 </Route>
                 <Route exact path="/:destination">
                     <CityInformation />
+                </Route>
+                <Route exact path="/:destination/:id">
+                    <SeatsInformation />
                 </Route>
             </Switch>
         </Router>

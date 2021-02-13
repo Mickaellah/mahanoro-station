@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {useParams} from 'react-router-dom';
 
@@ -10,13 +11,17 @@ const Container = styled.article`
     justify-content: space-between;
 `;
 
-const Button = styled.button`
+const Button = styled.div`
     margin-block-start: 16px;
     padding-inline: 32px;
     height: 48px;
     border: none;
     background: #E53170;
-    color: white;
+    
+
+    a {
+        color: white;
+    }
 `;
 
 const ButtonDisabled = styled.button`
@@ -33,8 +38,11 @@ const DepartureTime = styled.p`
     color: orange;
 `;
 
+const Destination = styled.small`
+    color: #E53170;
+`;
+
 function CityInformation({cities, getCities}) {
-    console.log(cities);
     useEffect(() => {
         getCities();
     }, []);
@@ -43,33 +51,34 @@ function CityInformation({cities, getCities}) {
     const cityInformation = cities.filter((city) => city.destination.toLowerCase() === destination.toLowerCase());
     return (
         <section>
-            <h1>Next trips to: {destination}</h1>
+            <h1>Next trips to: <Destination>{destination}</Destination></h1>
            {cityInformation.map((city) => {
                 const availableSeats = city.seats.filter((seat) => seat.isAvailable === true);
 
                 const miliseconds = city.departureTime * 1000;
                 const dateObject = new Date(miliseconds);
                 return (
-                    <>
-                        <Container key={city.id}>
-                            <div>
-                                <DepartureTime>
-                                    {dateObject.toLocaleString("en-US", {weekday: "long"})}
-                                </DepartureTime>
-                                <DepartureTime>
-                                    {dateObject.toLocaleString("en-US", {hour: "numeric"})}
-                                </DepartureTime>
-                            </div>
-                            <div>
-                                <p>{dateObject.toLocaleDateString()}</p>
-                                <p><small>{availableSeats.length}</small> seats left</p>
-                            </div>
-                            {availableSeats.length > 0 
-                                ? <Button type="button">Book a seat</Button>
-                                : <ButtonDisabled type="button">Book a seat</ButtonDisabled>
-                            }
-                        </Container>
-                    </>
+                    <Container key={city.id}>
+                        <div>
+                            <DepartureTime>
+                                {dateObject.toLocaleString("en-US", {weekday: "long"})}
+                            </DepartureTime>
+                            <DepartureTime>
+                                {dateObject.toLocaleString("en-US", {hour: "numeric"})}
+                            </DepartureTime>
+                        </div>
+                        <div>
+                            <p>{dateObject.toLocaleDateString()}</p>
+                            <p><Destination>{availableSeats.length}</Destination> seats left</p>
+                        </div>
+                        {availableSeats.length > 0 
+                            ? 
+                            <Button>
+                                <Link to={`/${city.destination}/${city.id}`} type="button">Book a seat</Link>
+                            </Button>
+                            : <ButtonDisabled to={`/${city.destination}/${city.id}`} type="button">Book a seat</ButtonDisabled>
+                        }
+                    </Container>
                 )
             })}
         </section>

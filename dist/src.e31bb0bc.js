@@ -38304,7 +38304,6 @@ function CityLists({
   cities,
   getCities
 }) {
-  console.log(cities);
   (0, _react.useEffect)(() => {
     getCities();
   }, []);
@@ -38338,9 +38337,9 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactRedux = require("react-redux");
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
 var _reactRouterDom = require("react-router-dom");
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _actions = require("../actions");
 
@@ -38354,13 +38353,17 @@ const Container = _styledComponents.default.article`
     display: flex;
     justify-content: space-between;
 `;
-const Button = _styledComponents.default.button`
+const Button = _styledComponents.default.div`
     margin-block-start: 16px;
     padding-inline: 32px;
     height: 48px;
     border: none;
     background: #E53170;
-    color: white;
+    
+
+    a {
+        color: white;
+    }
 `;
 const ButtonDisabled = _styledComponents.default.button`
     margin-block-start: 16px;
@@ -38374,12 +38377,14 @@ const ButtonDisabled = _styledComponents.default.button`
 const DepartureTime = _styledComponents.default.p`
     color: orange;
 `;
+const Destination = _styledComponents.default.small`
+    color: #E53170;
+`;
 
 function CityInformation({
   cities,
   getCities
 }) {
-  console.log(cities);
   (0, _react.useEffect)(() => {
     getCities();
   }, []);
@@ -38387,21 +38392,23 @@ function CityInformation({
     destination
   } = (0, _reactRouterDom.useParams)();
   const cityInformation = cities.filter(city => city.destination.toLowerCase() === destination.toLowerCase());
-  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h1", null, "Next trips to: ", destination), cityInformation.map(city => {
+  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h1", null, "Next trips to: ", /*#__PURE__*/_react.default.createElement(Destination, null, destination)), cityInformation.map(city => {
     const availableSeats = city.seats.filter(seat => seat.isAvailable === true);
     const miliseconds = city.departureTime * 1000;
     const dateObject = new Date(miliseconds);
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(Container, {
+    return /*#__PURE__*/_react.default.createElement(Container, {
       key: city.id
     }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
       weekday: "long"
     })), /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
       hour: "numeric"
-    }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, dateObject.toLocaleDateString()), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("small", null, availableSeats.length), " seats left")), availableSeats.length > 0 ? /*#__PURE__*/_react.default.createElement(Button, {
+    }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, dateObject.toLocaleDateString()), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(Destination, null, availableSeats.length), " seats left")), availableSeats.length > 0 ? /*#__PURE__*/_react.default.createElement(Button, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: `/${city.destination}/${city.id}`,
       type: "button"
-    }, "Book a seat") : /*#__PURE__*/_react.default.createElement(ButtonDisabled, {
+    }, "Book a seat")) : /*#__PURE__*/_react.default.createElement(ButtonDisabled, {
+      to: `/${city.destination}/${city.id}`,
       type: "button"
-    }, "Book a seat")));
+    }, "Book a seat"));
   }));
 }
 
@@ -38414,7 +38421,99 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(CityInformation);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js"}],"icons/chair-24px.svg":[function(require,module,exports) {
+module.exports = "/chair-24px.dd0868fb.svg";
+},{}],"components/SeatsInformation.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRedux = require("react-redux");
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _actions = require("../actions");
+
+var _chair24px = _interopRequireDefault(require("../icons/chair-24px.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const SeatInformationContainer = _styledComponents.default.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
+const SeatsContainer = _styledComponents.default.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 20px;
+    column-gap: 20px;
+    grid-row-gap: 20px;
+    row-gap: 20px;
+`;
+const Seat = _styledComponents.default.img`
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%),
+linear-gradient(0deg, #E53170, #E53170);
+    padding-inline: 8px;
+    width: 48px;
+    height: 48px;
+`;
+
+function SeatsInformation({
+  cities,
+  getCities
+}) {
+  (0, _react.useEffect)(() => {
+    getCities();
+  }, []);
+  const {
+    id
+  } = (0, _reactRouterDom.useParams)();
+  const {
+    destination
+  } = (0, _reactRouterDom.useParams)();
+  const destinationCity = cities.filter(city => city.destination.toLowerCase() == destination.toLowerCase());
+  const seatInformation = destinationCity.filter(city => Number(city.id) === Number(id));
+  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "Book a seat to: ", /*#__PURE__*/_react.default.createElement("small", null, destination))), /*#__PURE__*/_react.default.createElement(SeatInformationContainer, null, seatInformation.map(city => {
+    const miliseconds = city.departureTime * 1000;
+    const dateObject = new Date(miliseconds);
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: city.id
+    }, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h2", null, "Pick a seat")), /*#__PURE__*/_react.default.createElement(SeatsContainer, null, city.seats.map(seat => {
+      return /*#__PURE__*/_react.default.createElement("div", {
+        key: seat.id
+      }, /*#__PURE__*/_react.default.createElement(Seat, {
+        src: _chair24px.default,
+        alt: "seat"
+      }));
+    }))), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h2", null, "Trip informations:")), /*#__PURE__*/_react.default.createElement("p", null, "Departure time: ", /*#__PURE__*/_react.default.createElement("b", null, dateObject.toLocaleString("en-US", {
+      hour: "numeric"
+    }), ", ", dateObject.toLocaleDateString())), /*#__PURE__*/_react.default.createElement("p", null, "Driver: ", /*#__PURE__*/_react.default.createElement("b", null, city.driverName)), /*#__PURE__*/_react.default.createElement("p", null, "Driver's contact: ", /*#__PURE__*/_react.default.createElement("b", null, city.driverContact)), /*#__PURE__*/_react.default.createElement("p", null, "Estimated duration: ", /*#__PURE__*/_react.default.createElement("b", null, city.estimatedDuration)), /*#__PURE__*/_react.default.createElement("p", null, "Breaks: ", /*#__PURE__*/_react.default.createElement("b", null, city.breaks))));
+  })));
+}
+
+const mapDispatchToProps = {
+  getCities: _actions.getCities
+};
+
+var _default = (0, _reactRedux.connect)(state => ({
+  cities: state.cities
+}), mapDispatchToProps)(SeatsInformation);
+
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js","../icons/chair-24px.svg":"icons/chair-24px.svg"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38430,6 +38529,8 @@ var _CityLists = _interopRequireDefault(require("./components/CityLists"));
 
 var _CityInforamation = _interopRequireDefault(require("./components/CityInforamation"));
 
+var _SeatsInformation = _interopRequireDefault(require("./components/SeatsInformation"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
@@ -38439,9 +38540,12 @@ function App() {
   }, /*#__PURE__*/_react.default.createElement(_CityLists.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/:destination"
-  }, /*#__PURE__*/_react.default.createElement(_CityInforamation.default, null))));
+  }, /*#__PURE__*/_react.default.createElement(_CityInforamation.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    exact: true,
+    path: "/:destination/:id"
+  }, /*#__PURE__*/_react.default.createElement(_SeatsInformation.default, null))));
 }
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/CityLists":"components/CityLists.js","./components/CityInforamation":"components/CityInforamation.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/CityLists":"components/CityLists.js","./components/CityInforamation":"components/CityInforamation.js","./components/SeatsInformation":"components/SeatsInformation.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

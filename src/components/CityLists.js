@@ -22,7 +22,6 @@ const ListOfCities = styled.li`
 `;
 
 function CityLists({cities, getCities}) {
-    console.log(cities);
     useEffect(() => {
         getCities();
     }, []);

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 const ModalContainer = styled.div`
     position: absolute;
@@ -69,7 +70,7 @@ export default function Modal(props) {
                     <p>
                         Thank you for trusting our services. Your booking has been added to your account. You can review it there.
                     </p>
-                    <Button>Checkbox your acount</Button>
+                    <Link to="/user">Checkbox your acount</Link>
                 </ModalBox>
             </div>
         </ModalContainer>

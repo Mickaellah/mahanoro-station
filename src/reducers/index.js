@@ -9,6 +9,17 @@ function cities(state = [], action) {
     }
 }
 
+function user(state = [], action) {
+    switch(action.type) {
+        case "GET_USER": {
+            return action.value
+        }
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
-    cities
+    cities,
+    user
 });

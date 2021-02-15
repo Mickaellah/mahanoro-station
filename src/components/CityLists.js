@@ -34,7 +34,7 @@ function CityLists({cities, getCities}) {
                     return (
                         <CityContainer key={city.id}>
                             <ListOfCities>
-                                <Link to={`/${city.destination}`}>
+                                <Link to={`/city/${city.destination}`}>
                                     {city.destination}
                                 </Link>
                             </ListOfCities>

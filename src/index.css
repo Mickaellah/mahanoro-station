@@ -34,3 +34,7 @@ li {
 button {
     cursor: pointer;
 }
+
+::placeholder {
+    color: #FF8906;
+}

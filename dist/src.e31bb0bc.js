@@ -33295,7 +33295,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  cities: []
+  cities: [],
+  user: [{
+    passengerFirstName: "Clopedia",
+    passengerLastName: "Nomenjanahary",
+    passengerPhoneNumber: "0344523930",
+    id: 1
+  }]
 };
 exports.default = _default;
 },{}],"reducers/index.js":[function(require,module,exports) {
@@ -33318,8 +33324,21 @@ function cities(state = [], action) {
   }
 }
 
+function user(state = [], action) {
+  switch (action.type) {
+    case "GET_USER":
+      {
+        return action.value;
+      }
+
+    default:
+      return state;
+  }
+}
+
 var _default = (0, _redux.combineReducers)({
-  cities
+  cities,
+  user
 });
 
 exports.default = _default;
@@ -38250,6 +38269,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getCities = getCities;
+exports.getUser = getUser;
 
 function getCities() {
   return async dispatch => {
@@ -38259,6 +38279,13 @@ function getCities() {
       type: "GET_CITIES",
       value: cities
     });
+  };
+}
+
+function getUser(user) {
+  return {
+    type: "GET_USER",
+    value: user
   };
 }
 },{}],"components/CityLists.js":[function(require,module,exports) {
@@ -38311,7 +38338,7 @@ function CityLists({
     return /*#__PURE__*/_react.default.createElement(CityContainer, {
       key: city.id
     }, /*#__PURE__*/_react.default.createElement(ListOfCities, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      to: `/${city.destination}`
+      to: `/city/${city.destination}`
     }, city.destination)));
   })));
 }
@@ -38437,6 +38464,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _reactRouterDom = require("react-router-dom");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const ModalContainer = _styledComponents.default.div`
@@ -38495,9 +38524,11 @@ function Modal(props) {
 
   return /*#__PURE__*/_react.default.createElement(ModalContainer, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(ModalBox, null, /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("h2", null, "Booking confirmed!"), /*#__PURE__*/_react.default.createElement(CloseButton, {
     onClick: props.onClose
-  }, "X")), /*#__PURE__*/_react.default.createElement("p", null, "Thank you for trusting our services. Your booking has been added to your account. You can review it there."), /*#__PURE__*/_react.default.createElement(Button, null, "Checkbox your acount"))));
+  }, "X")), /*#__PURE__*/_react.default.createElement("p", null, "Thank you for trusting our services. Your booking has been added to your account. You can review it there."), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/user"
+  }, "Checkbox your acount"))));
 }
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"icons/chair-24px.svg":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"icons/chair-24px.svg":[function(require,module,exports) {
 module.exports = "/chair-24px.dd0868fb.svg";
 },{}],"components/SeatsInformation.js":[function(require,module,exports) {
 "use strict";
@@ -38688,7 +38719,91 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(SeatsInformation);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js","./Modal":"components/Modal.js","../icons/chair-24px.svg":"icons/chair-24px.svg"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js","./Modal":"components/Modal.js","../icons/chair-24px.svg":"icons/chair-24px.svg"}],"components/UserAccount.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRedux = require("react-redux");
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _actions = require("../actions");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Container = _styledComponents.default.div`
+    @media (min-width: 600px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+`;
+const Fieldset = _styledComponents.default.fieldset`
+    border: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin-block-start: 16px;
+`;
+const Input = _styledComponents.default.input`
+    padding: 16px;
+    border: none;
+    background: #000000;
+    margin-block-start: 8px;
+`;
+const Button = _styledComponents.default.button`
+    padding-block: 16px;
+    padding-inline: 32px;
+    border: none;
+    margin-block-start: 32px;
+    background: #E53170;
+    color: white;
+    margin-inline-start: 72%;
+
+    @media (min-width: 600px) {
+        margin-inline-start: 50%;
+    }
+`;
+
+function UserAccount({
+  user
+}) {
+  console.log(user);
+  return /*#__PURE__*/_react.default.createElement("div", null, user.map(user => {
+    return /*#__PURE__*/_react.default.createElement("section", {
+      key: user.id
+    }, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "My account: ", user.passengerFirstName, " ", user.passengerLastName)), /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My personnal informations:")), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "First name"), /*#__PURE__*/_react.default.createElement(Input, {
+      type: "text",
+      name: "firstName",
+      placeholder: user.passengerFirstName
+    })), /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "Last name"), /*#__PURE__*/_react.default.createElement(Input, {
+      type: "text",
+      name: "lastName",
+      placeholder: user.passengerLastName
+    })), /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "Phone number"), /*#__PURE__*/_react.default.createElement(Input, {
+      type: "tel",
+      name: "contact",
+      placeholder: user.passengerPhoneNumber
+    })), /*#__PURE__*/_react.default.createElement(Button, null, "Update"))), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My booking:")))));
+  }));
+}
+
+const mapDispatchToProps = {
+  getUser: _actions.getUser
+};
+
+var _default = (0, _reactRedux.connect)(state => ({
+  user: state.user
+}), mapDispatchToProps)(UserAccount);
+
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38706,6 +38821,8 @@ var _CityInforamation = _interopRequireDefault(require("./components/CityInforam
 
 var _SeatsInformation = _interopRequireDefault(require("./components/SeatsInformation"));
 
+var _UserAccount = _interopRequireDefault(require("./components/UserAccount"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
@@ -38714,13 +38831,16 @@ function App() {
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_CityLists.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
-    path: "/:destination"
+    path: "/city/:destination"
   }, /*#__PURE__*/_react.default.createElement(_CityInforamation.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/:destination/:id"
-  }, /*#__PURE__*/_react.default.createElement(_SeatsInformation.default, null))));
+  }, /*#__PURE__*/_react.default.createElement(_SeatsInformation.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    exact: true,
+    path: "/user"
+  }, /*#__PURE__*/_react.default.createElement(_UserAccount.default, null))));
 }
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/CityLists":"components/CityLists.js","./components/CityInforamation":"components/CityInforamation.js","./components/SeatsInformation":"components/SeatsInformation.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/CityLists":"components/CityLists.js","./components/CityInforamation":"components/CityInforamation.js","./components/SeatsInformation":"components/SeatsInformation.js","./components/UserAccount":"components/UserAccount.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

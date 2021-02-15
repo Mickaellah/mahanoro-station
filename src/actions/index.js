@@ -8,3 +8,10 @@ export function getCities() {
         })
     }
 }
+
+export function getUser(user) {
+    return {
+        type: "GET_USER",
+        value: user
+    }
+}

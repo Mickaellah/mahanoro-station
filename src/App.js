@@ -8,6 +8,7 @@ import {
 import CityLists from './components/CityLists';
 import CityInformation from './components/CityInforamation';
 import SeatsInformation from './components/SeatsInformation';
+import UserAccount from './components/UserAccount';
 
 export default function App() {
     return (
@@ -16,11 +17,14 @@ export default function App() {
                 <Route exact path="/">
                     <CityLists />
                 </Route>
-                <Route exact path="/:destination">
+                <Route exact path="/city/:destination">
                     <CityInformation />
                 </Route>
                 <Route exact path="/:destination/:id">
                     <SeatsInformation />
+                </Route>
+                <Route exact path="/user">
+                    <UserAccount />
                 </Route>
             </Switch>
         </Router>

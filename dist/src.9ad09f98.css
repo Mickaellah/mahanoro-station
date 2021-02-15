@@ -35,4 +35,8 @@ button {
     cursor: pointer;
 }
 
+::placeholder {
+    color: #FF8906;
+}
+
 /*# sourceMappingURL=/src.9ad09f98.css.map */

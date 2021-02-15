@@ -38349,7 +38349,11 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const Container = _styledComponents.default.article`
+const Container = _styledComponents.default.section`
+    padding: 32px;
+    text-align: center;
+`;
+const CityContainer = _styledComponents.default.article`
     display: flex;
     justify-content: space-between;
 `;
@@ -38392,11 +38396,11 @@ function CityInformation({
     destination
   } = (0, _reactRouterDom.useParams)();
   const cityInformation = cities.filter(city => city.destination.toLowerCase() === destination.toLowerCase());
-  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h1", null, "Next trips to: ", /*#__PURE__*/_react.default.createElement(Destination, null, destination)), cityInformation.map(city => {
+  return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("h1", null, "Next trips to: ", /*#__PURE__*/_react.default.createElement(Destination, null, destination)), cityInformation.map(city => {
     const availableSeats = city.seats.filter(seat => seat.isAvailable === true);
     const miliseconds = city.departureTime * 1000;
     const dateObject = new Date(miliseconds);
-    return /*#__PURE__*/_react.default.createElement(Container, {
+    return /*#__PURE__*/_react.default.createElement(CityContainer, {
       key: city.id
     }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
       weekday: "long"
@@ -38421,7 +38425,79 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(CityInformation);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js"}],"icons/chair-24px.svg":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js"}],"components/Modal.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Modal;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const ModalContainer = _styledComponents.default.div`
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+const ModalBox = _styledComponents.default.div`
+    width: 300px;
+    background-color: white;
+    margin-block-start: -100%;
+    padding: 48px;
+    text-align: center;
+    transform: translate(-50%);
+    border: 5px solid #E53170;
+
+    @media (min-width: 600px) {
+        transform: translate(-95%);
+    }
+`;
+const Container = _styledComponents.default.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
+const CloseButton = _styledComponents.default.span`
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    color: white;
+    margin-block-start: -32px;
+    margin-inline-end: -32px;
+    color: black;
+`;
+const Button = _styledComponents.default.button`
+    padding-block: 16px;
+    padding-inline: 32px;
+    border: none;
+    margin-block-start: 32px;
+    background: #E53170;
+    color: white;
+`;
+
+function Modal(props) {
+  if (!props.show) {
+    return null;
+  }
+
+  return /*#__PURE__*/_react.default.createElement(ModalContainer, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(ModalBox, null, /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("h2", null, "Booking confirmed!"), /*#__PURE__*/_react.default.createElement(CloseButton, {
+    onClick: props.onClose
+  }, "X")), /*#__PURE__*/_react.default.createElement("p", null, "Thank you for trusting our services. Your booking has been added to your account. You can review it there."), /*#__PURE__*/_react.default.createElement(Button, null, "Checkbox your acount"))));
+}
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"icons/chair-24px.svg":[function(require,module,exports) {
 module.exports = "/chair-24px.dd0868fb.svg";
 },{}],"components/SeatsInformation.js":[function(require,module,exports) {
 "use strict";
@@ -38441,6 +38517,8 @@ var _reactRouterDom = require("react-router-dom");
 
 var _actions = require("../actions");
 
+var _Modal = _interopRequireDefault(require("./Modal"));
+
 var _chair24px = _interopRequireDefault(require("../icons/chair-24px.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -38449,6 +38527,17 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+const MainContainer = _styledComponents.default.section`
+    padding: 32px;
+    text-align: center;
+`;
+const Header = _styledComponents.default.h1`
+    text-transform: uppercase;
+
+    small {
+        text-transform: capitalize;
+    }
+`;
 const SeatInformationContainer = _styledComponents.default.div`
     display: flex;
     flex-direction: row;
@@ -38463,12 +38552,63 @@ const SeatsContainer = _styledComponents.default.div`
     grid-row-gap: 20px;
     row-gap: 20px;
 `;
+const Container = _styledComponents.default.div`
+    @media (min-width: 600px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 32px;
+        column-gap: 32px;
+    }
+`;
+const DriverInformation = _styledComponents.default.article`
+    text-align: start;
+`;
 const Seat = _styledComponents.default.img`
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%),
 linear-gradient(0deg, #E53170, #E53170);
     padding-inline: 8px;
     width: 48px;
     height: 48px;
+`;
+const AvailableSeat = _styledComponents.default.img`
+    width: 48px;
+    height: 48px;
+`;
+const SelectedSeats = _styledComponents.default.img`
+    width: 48px;
+    height: 48px;
+    padding-inline: 8px;
+    background-color: orange;
+`;
+const Information = _styledComponents.default.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
+const BoldText = _styledComponents.default.p`
+    font-weight: bold;
+`;
+const Button = _styledComponents.default.button`
+    padding-block: 16px;
+    padding-inline: 32px;
+    border: none;
+    background: #E53170;
+    color: white;
+`;
+const TotalPriceContainer = _styledComponents.default.div`
+    transform: translate(55%);
+`;
+const Price = _styledComponents.default.div`
+    display: flex;
+    margin-inline-start: 40px;
+
+    p {
+        color: orange;
+    }
+
+    b {
+        margin-block-start: 16px;
+    }
 `;
 
 function SeatsInformation({
@@ -38478,6 +38618,13 @@ function SeatsInformation({
   (0, _react.useEffect)(() => {
     getCities();
   }, []);
+  const [isChecked, setIsChecked] = (0, _react.useState)(false);
+  const [show, setShow] = (0, _react.useState)(false);
+
+  function handleCheckbox() {
+    setIsChecked(!isChecked);
+  }
+
   const {
     id
   } = (0, _reactRouterDom.useParams)();
@@ -38486,21 +38633,49 @@ function SeatsInformation({
   } = (0, _reactRouterDom.useParams)();
   const destinationCity = cities.filter(city => city.destination.toLowerCase() == destination.toLowerCase());
   const seatInformation = destinationCity.filter(city => Number(city.id) === Number(id));
-  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "Book a seat to: ", /*#__PURE__*/_react.default.createElement("small", null, destination))), /*#__PURE__*/_react.default.createElement(SeatInformationContainer, null, seatInformation.map(city => {
+  return /*#__PURE__*/_react.default.createElement(MainContainer, null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement(Header, null, "Book a seat to: ", /*#__PURE__*/_react.default.createElement("small", null, destination))), /*#__PURE__*/_react.default.createElement(SeatInformationContainer, null, seatInformation.map(city => {
     const miliseconds = city.departureTime * 1000;
     const dateObject = new Date(miliseconds);
-    return /*#__PURE__*/_react.default.createElement("div", {
+    return /*#__PURE__*/_react.default.createElement(Container, {
       key: city.id
-    }, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h2", null, "Pick a seat")), /*#__PURE__*/_react.default.createElement(SeatsContainer, null, city.seats.map(seat => {
-      return /*#__PURE__*/_react.default.createElement("div", {
+    }, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement(Header, null, "Pick a seat")), /*#__PURE__*/_react.default.createElement(SeatsContainer, null, city.seats.map(seat => {
+      function seats() {
+        if (seat.isAvailable) {
+          return /*#__PURE__*/_react.default.createElement(AvailableSeat, {
+            src: _chair24px.default,
+            alt: "seat"
+          });
+        } else if (seat.isAvailable && isChecked) {
+          return /*#__PURE__*/_react.default.createElement(SelectedSeats, {
+            src: _chair24px.default,
+            alt: "seat"
+          });
+        } else {
+          return /*#__PURE__*/_react.default.createElement(Seat, {
+            src: _chair24px.default,
+            alt: "seat"
+          });
+        }
+      }
+
+      return /*#__PURE__*/_react.default.createElement("form", {
         key: seat.id
-      }, /*#__PURE__*/_react.default.createElement(Seat, {
-        src: _chair24px.default,
-        alt: "seat"
-      }));
-    }))), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h2", null, "Trip informations:")), /*#__PURE__*/_react.default.createElement("p", null, "Departure time: ", /*#__PURE__*/_react.default.createElement("b", null, dateObject.toLocaleString("en-US", {
+      }, /*#__PURE__*/_react.default.createElement("input", {
+        type: "checkbox",
+        value: isChecked,
+        onChange: handleCheckbox
+      }), /*#__PURE__*/_react.default.createElement("label", null, seats()));
+    }))), /*#__PURE__*/_react.default.createElement(DriverInformation, null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement(Header, null, "Trip informations:")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Departure time:"), /*#__PURE__*/_react.default.createElement(BoldText, null, dateObject.toLocaleString("en-US", {
       hour: "numeric"
-    }), ", ", dateObject.toLocaleDateString())), /*#__PURE__*/_react.default.createElement("p", null, "Driver: ", /*#__PURE__*/_react.default.createElement("b", null, city.driverName)), /*#__PURE__*/_react.default.createElement("p", null, "Driver's contact: ", /*#__PURE__*/_react.default.createElement("b", null, city.driverContact)), /*#__PURE__*/_react.default.createElement("p", null, "Estimated duration: ", /*#__PURE__*/_react.default.createElement("b", null, city.estimatedDuration)), /*#__PURE__*/_react.default.createElement("p", null, "Breaks: ", /*#__PURE__*/_react.default.createElement("b", null, city.breaks))));
+    }), ", ", dateObject.toLocaleDateString())), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverName)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver's contact:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverContact)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Estimated duration:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.estimatedDuration)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Breaks:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.breaks)), /*#__PURE__*/_react.default.createElement(TotalPriceContainer, null, /*#__PURE__*/_react.default.createElement(Price, null, /*#__PURE__*/_react.default.createElement("p", null, city.price), " ", /*#__PURE__*/_react.default.createElement("b", null, "Ar/seat")), /*#__PURE__*/_react.default.createElement(Button, {
+      onClick: () => {
+        console.log("I am clicked");
+        setShow(true);
+      }
+    }, "Book ", " seats"), /*#__PURE__*/_react.default.createElement(_Modal.default, {
+      onClose: () => setShow(false),
+      show: show
+    })))));
   })));
 }
 
@@ -38513,7 +38688,7 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(SeatsInformation);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js","../icons/chair-24px.svg":"icons/chair-24px.svg"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js","./Modal":"components/Modal.js","../icons/chair-24px.svg":"icons/chair-24px.svg"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38591,7 +38766,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51560" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51340" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

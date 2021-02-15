@@ -6,7 +6,12 @@ import {useParams} from 'react-router-dom';
 
 import {getCities} from '../actions';
 
-const Container = styled.article`
+const Container = styled.section`
+    padding: 32px;
+    text-align: center;
+`;
+
+const CityContainer = styled.article`
     display: flex;
     justify-content: space-between;
 `;
@@ -49,8 +54,9 @@ function CityInformation({cities, getCities}) {
 
     const {destination} = useParams();
     const cityInformation = cities.filter((city) => city.destination.toLowerCase() === destination.toLowerCase());
+
     return (
-        <section>
+        <Container>
             <h1>Next trips to: <Destination>{destination}</Destination></h1>
            {cityInformation.map((city) => {
                 const availableSeats = city.seats.filter((seat) => seat.isAvailable === true);
@@ -58,7 +64,7 @@ function CityInformation({cities, getCities}) {
                 const miliseconds = city.departureTime * 1000;
                 const dateObject = new Date(miliseconds);
                 return (
-                    <Container key={city.id}>
+                    <CityContainer key={city.id}>
                         <div>
                             <DepartureTime>
                                 {dateObject.toLocaleString("en-US", {weekday: "long"})}
@@ -78,10 +84,10 @@ function CityInformation({cities, getCities}) {
                             </Button>
                             : <ButtonDisabled to={`/${city.destination}/${city.id}`} type="button">Book a seat</ButtonDisabled>
                         }
-                    </Container>
+                    </CityContainer>
                 )
             })}
-        </section>
+        </Container>
     )
 }
 

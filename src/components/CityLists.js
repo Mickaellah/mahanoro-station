@@ -19,12 +19,18 @@ const ListOfCities = styled.li`
     text-transform: uppercase;
     margin-block-start: 20px;
     text-align: center;
+    cursor: pointer;
+
+    a {
+        color: white;
+    }
 `;
 
 function CityLists({cities, getCities}) {
     useEffect(() => {
         getCities();
     }, []);
+    
     return (
         <div>
             <h1>Where are you going?</h1>

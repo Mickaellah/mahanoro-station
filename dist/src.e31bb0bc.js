@@ -38325,6 +38325,11 @@ const ListOfCities = _styledComponents.default.li`
     text-transform: uppercase;
     margin-block-start: 20px;
     text-align: center;
+    cursor: pointer;
+
+    a {
+        color: white;
+    }
 `;
 
 function CityLists({
@@ -38385,25 +38390,31 @@ const CityContainer = _styledComponents.default.article`
     justify-content: space-between;
 `;
 const Button = _styledComponents.default.div`
-    margin-block-start: 16px;
+    padding-block: 16px;
     padding-inline: 32px;
-    height: 48px;
+    margin-block-start: 16px;
+    height: 18px;
     border: none;
     background: #E53170;
-    
+    cursor: pointer;
 
     a {
         color: white;
     }
 `;
-const ButtonDisabled = _styledComponents.default.button`
+const ButtonDisabled = _styledComponents.default.div`
     margin-block-start: 16px;
+    padding-block: 16px;
     padding-inline: 32px;
-    height: 48px;
+    height: 18px;
     border: none;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), linear-gradient(0deg, #E53170, #E53170);
-    color: white;
     cursor: not-allowed;
+
+    a {
+        color: white;
+        cursor: not-allowed;
+    }
 `;
 const DepartureTime = _styledComponents.default.p`
     color: orange;
@@ -38436,10 +38447,10 @@ function CityInformation({
     }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, dateObject.toLocaleDateString()), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(Destination, null, availableSeats.length), " seats left")), availableSeats.length > 0 ? /*#__PURE__*/_react.default.createElement(Button, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: `/${city.destination}/${city.id}`,
       type: "button"
-    }, "Book a seat")) : /*#__PURE__*/_react.default.createElement(ButtonDisabled, {
+    }, "Book a seat")) : /*#__PURE__*/_react.default.createElement(ButtonDisabled, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: `/${city.destination}/${city.id}`,
       type: "button"
-    }, "Book a seat"));
+    }, "Book a seat")));
   }));
 }
 
@@ -38508,13 +38519,17 @@ const CloseButton = _styledComponents.default.span`
     margin-inline-end: -32px;
     color: black;
 `;
-const Button = _styledComponents.default.button`
+const Button = _styledComponents.default.div`
     padding-block: 16px;
     padding-inline: 32px;
     border: none;
     margin-block-start: 32px;
     background: #E53170;
     color: white;
+
+    a {
+        color: white;
+    }
 `;
 
 function Modal(props) {
@@ -38524,9 +38539,9 @@ function Modal(props) {
 
   return /*#__PURE__*/_react.default.createElement(ModalContainer, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(ModalBox, null, /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("h2", null, "Booking confirmed!"), /*#__PURE__*/_react.default.createElement(CloseButton, {
     onClick: props.onClose
-  }, "X")), /*#__PURE__*/_react.default.createElement("p", null, "Thank you for trusting our services. Your booking has been added to your account. You can review it there."), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, "X")), /*#__PURE__*/_react.default.createElement("p", null, "Thank you for trusting our services. Your booking has been added to your account. You can review it there."), /*#__PURE__*/_react.default.createElement(Button, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/user"
-  }, "Checkbox your acount"))));
+  }, "Checkbox your acount")))));
 }
 },{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"icons/chair-24px.svg":[function(require,module,exports) {
 module.exports = "/chair-24px.dd0868fb.svg";

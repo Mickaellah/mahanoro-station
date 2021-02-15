@@ -46,13 +46,17 @@ const CloseButton = styled.span`
     color: black;
 `;
 
-const Button = styled.button`
+const Button = styled.div`
     padding-block: 16px;
     padding-inline: 32px;
     border: none;
     margin-block-start: 32px;
     background: #E53170;
     color: white;
+
+    a {
+        color: white;
+    }
 `;
 
 export default function Modal(props) {
@@ -70,7 +74,9 @@ export default function Modal(props) {
                     <p>
                         Thank you for trusting our services. Your booking has been added to your account. You can review it there.
                     </p>
-                    <Link to="/user">Checkbox your acount</Link>
+                    <Button>
+                        <Link to="/user">Checkbox your acount</Link>
+                    </Button>
                 </ModalBox>
             </div>
         </ModalContainer>

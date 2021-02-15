@@ -14,6 +14,11 @@ function user(state = [], action) {
         case "GET_USER": {
             return action.value
         }
+        case "UPDATE_USER": {
+            return [
+                ...state, action.value
+            ]
+        }
         default:
             return state
     }

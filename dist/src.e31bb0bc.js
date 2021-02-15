@@ -33300,7 +33300,7 @@ var _default = {
     passengerFirstName: "Clopedia",
     passengerLastName: "Nomenjanahary",
     passengerPhoneNumber: "0344523930",
-    id: 1
+    id: Date.now()
   }]
 };
 exports.default = _default;
@@ -33329,6 +33329,11 @@ function user(state = [], action) {
     case "GET_USER":
       {
         return action.value;
+      }
+
+    case "UPDATE_USER":
+      {
+        return [...state, action.value];
       }
 
     default:
@@ -38270,6 +38275,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getCities = getCities;
 exports.getUser = getUser;
+exports.updateUser = updateUser;
 
 function getCities() {
   return async dispatch => {
@@ -38285,6 +38291,13 @@ function getCities() {
 function getUser(user) {
   return {
     type: "GET_USER",
+    value: user
+  };
+}
+
+function updateUser(user) {
+  return {
+    type: "UPDATE_USER",
     value: user
   };
 }
@@ -38742,7 +38755,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactRedux = require("react-redux");
 
@@ -38751,6 +38764,10 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 var _actions = require("../actions");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const Container = _styledComponents.default.div`
     @media (min-width: 600px) {
@@ -38787,30 +38804,51 @@ const Button = _styledComponents.default.button`
 `;
 
 function UserAccount({
-  user
+  user,
+  updateUser
 }) {
+  const [firstName, setFirstName] = (0, _react.useState)("");
+  const [lastName, setLastName] = (0, _react.useState)("");
+  const [contact, setContact] = (0, _react.useState)("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    updateUser();
+  }
+
   console.log(user);
   return /*#__PURE__*/_react.default.createElement("div", null, user.map(user => {
     return /*#__PURE__*/_react.default.createElement("section", {
       key: user.id
-    }, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "My account: ", user.passengerFirstName, " ", user.passengerLastName)), /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My personnal informations:")), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "First name"), /*#__PURE__*/_react.default.createElement(Input, {
+    }, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "My account: ", user.passengerFirstName, " ", user.passengerLastName)), /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My personnal informations:")), /*#__PURE__*/_react.default.createElement("form", {
+      onSubmit: handleSubmit
+    }, /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "First name"), /*#__PURE__*/_react.default.createElement(Input, {
       type: "text",
+      value: firstName,
+      onChange: e => setFirstName(e.target.value),
       name: "firstName",
       placeholder: user.passengerFirstName
     })), /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "Last name"), /*#__PURE__*/_react.default.createElement(Input, {
       type: "text",
+      value: lastName,
+      onChange: e => setLastName(e.target.value),
       name: "lastName",
       placeholder: user.passengerLastName
     })), /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "Phone number"), /*#__PURE__*/_react.default.createElement(Input, {
       type: "tel",
+      value: contact,
+      onChange: e => setContact(e.target.value),
       name: "contact",
       placeholder: user.passengerPhoneNumber
-    })), /*#__PURE__*/_react.default.createElement(Button, null, "Update"))), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My booking:")))));
+    })), /*#__PURE__*/_react.default.createElement(Button, {
+      type: "submit"
+    }, "Update"))), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My booking:")))));
   }));
 }
 
 const mapDispatchToProps = {
-  getUser: _actions.getUser
+  getUser: _actions.getUser,
+  updateUser: _actions.updateUser
 };
 
 var _default = (0, _reactRedux.connect)(state => ({

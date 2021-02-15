@@ -15,3 +15,10 @@ export function getUser(user) {
         value: user
     }
 }
+
+export function updateUser(user) {
+    return {
+        type: "UPDATE_USER",
+        value: user
+    }
+}

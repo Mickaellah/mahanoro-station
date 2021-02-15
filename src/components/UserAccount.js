@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
 
-import {getUser} from '../actions';
+import {getUser, updateUser} from '../actions';
 
 const Container = styled.div`
     @media (min-width: 600px) {
@@ -41,7 +41,15 @@ const Button = styled.button`
     }
 `;
 
-function UserAccount({user}) {
+function UserAccount({user, updateUser}) {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [contact, setContact] = useState("");
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        updateUser();
+    }
     console.log(user);
     return (
         <div>
@@ -58,20 +66,20 @@ function UserAccount({user}) {
                                         My personnal informations:
                                     </h3>
                                 </header>
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <Fieldset>
                                         <label>First name</label>
-                                        <Input type="text" name="firstName" placeholder={user.passengerFirstName} />
+                                        <Input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} name="firstName" placeholder={user.passengerFirstName} />
                                     </Fieldset>
                                     <Fieldset>
                                         <label>Last name</label>
-                                        <Input type="text" name="lastName" placeholder={user.passengerLastName} />
+                                        <Input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} name="lastName" placeholder={user.passengerLastName} />
                                     </Fieldset>
                                     <Fieldset>
                                         <label>Phone number</label>
-                                        <Input type="tel" name="contact" placeholder={user.passengerPhoneNumber} />
+                                        <Input type="tel" value={contact} onChange={(e) => setContact(e.target.value)} name="contact" placeholder={user.passengerPhoneNumber} />
                                     </Fieldset>
-                                    <Button>Update</Button>
+                                    <Button type="submit">Update</Button>
                                 </form>
                             </article>
                             <article>
@@ -90,7 +98,8 @@ function UserAccount({user}) {
 }
 
 const mapDispatchToProps = {
-    getUser
+    getUser,
+    updateUser
 }
 
 export default connect((state) => ({user: state.user}), mapDispatchToProps) (UserAccount);

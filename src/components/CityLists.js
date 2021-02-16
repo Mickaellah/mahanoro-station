@@ -30,23 +30,66 @@ function CityLists({cities, getCities}) {
     useEffect(() => {
         getCities();
     }, []);
-    
+
+    const filterAntananarivoCity = cities.filter(city => city.destination === "Antananarivo");
+
+    const filterVatomandryCity = cities.filter(city => city.destination === "Vatomandry");
+
+    const filterToamasinaCity = cities.filter(city => city.destination === "Toamasina");
+
+    const filterMoramangaCity = cities.filter(city => city.destination === "Moramanga");
+
     return (
         <div>
             <h1>Where are you going?</h1>
 
             <nav>
-                {cities.map(city => {
-                    return (
-                        <CityContainer key={city.id}>
-                            <ListOfCities>
-                                <Link to={`/city/${city.destination}`}>
-                                    {city.destination}
-                                </Link>
-                            </ListOfCities>
-                        </CityContainer>
-                    )
-                })}
+                <CityContainer>
+                    {filterAntananarivoCity.map((city, index) => {
+                        if (index === 0) {
+                            return (
+                                <ListOfCities key={city.id}>
+                                    <Link to={`/city/${city.destination}`}>
+                                        {city.destination}
+                                    </Link>
+                                </ListOfCities>
+                            )
+                        }
+                    })}
+                    {filterVatomandryCity.map((city, index) => {
+                        if (index === 0) {
+                            return (
+                                <ListOfCities key={city.id}>
+                                    <Link to={`/city/${city.destination}`}>
+                                        {city.destination}
+                                    </Link>
+                                </ListOfCities>
+                            )
+                        }
+                    })}
+                    {filterToamasinaCity.map((city, index) => {
+                        if (index === 0) {
+                            return (
+                                <ListOfCities key={city.id}>
+                                    <Link to={`/city/${city.destination}`}>
+                                        {city.destination}
+                                    </Link>
+                                </ListOfCities>
+                            )
+                        }
+                    })}
+                    {filterMoramangaCity.map((city, index) => {
+                        if (index === 0) {
+                            return (
+                                <ListOfCities key={city.id}>
+                                    <Link to={`/city/${city.destination}`}>
+                                        {city.destination}
+                                    </Link>
+                                </ListOfCities>
+                            )
+                        }
+                    })}
+                </CityContainer>
             </nav>
         </div>
     )

@@ -38352,13 +38352,43 @@ function CityLists({
   (0, _react.useEffect)(() => {
     getCities();
   }, []);
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Where are you going?"), /*#__PURE__*/_react.default.createElement("nav", null, cities.map(city => {
-    return /*#__PURE__*/_react.default.createElement(CityContainer, {
-      key: city.id
-    }, /*#__PURE__*/_react.default.createElement(ListOfCities, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      to: `/city/${city.destination}`
-    }, city.destination)));
-  })));
+  const filterAntananarivoCity = cities.filter(city => city.destination === "Antananarivo");
+  const filterVatomandryCity = cities.filter(city => city.destination === "Vatomandry");
+  const filterToamasinaCity = cities.filter(city => city.destination === "Toamasina");
+  const filterMoramangaCity = cities.filter(city => city.destination === "Moramanga");
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Where are you going?"), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement(CityContainer, null, filterAntananarivoCity.map((city, index) => {
+    if (index === 0) {
+      return /*#__PURE__*/_react.default.createElement(ListOfCities, {
+        key: city.id
+      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+        to: `/city/${city.destination}`
+      }, city.destination));
+    }
+  }), filterVatomandryCity.map((city, index) => {
+    if (index === 0) {
+      return /*#__PURE__*/_react.default.createElement(ListOfCities, {
+        key: city.id
+      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+        to: `/city/${city.destination}`
+      }, city.destination));
+    }
+  }), filterToamasinaCity.map((city, index) => {
+    if (index === 0) {
+      return /*#__PURE__*/_react.default.createElement(ListOfCities, {
+        key: city.id
+      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+        to: `/city/${city.destination}`
+      }, city.destination));
+    }
+  }), filterMoramangaCity.map((city, index) => {
+    if (index === 0) {
+      return /*#__PURE__*/_react.default.createElement(ListOfCities, {
+        key: city.id
+      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+        to: `/city/${city.destination}`
+      }, city.destination));
+    }
+  }))));
 }
 
 const mapDispatchToProps = {
@@ -38939,7 +38969,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51340" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55094" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

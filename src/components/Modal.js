@@ -4,19 +4,23 @@ import {Link} from 'react-router-dom';
 
 const ModalContainer = styled.div`
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 80%;
+    top: 60%;
     right: 0;
     bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (min-width: 600px) {
+        left: 55%;
+        top: 10%;
+    }
 `;
 
 const ModalBox = styled.div`
     width: 300px;
     background-color: white;
-    margin-block-start: -100%;
     padding: 48px;
     text-align: center;
     transform: translate(-50%);

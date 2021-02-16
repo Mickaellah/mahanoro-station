@@ -38524,18 +38524,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const ModalContainer = _styledComponents.default.div`
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 80%;
+    top: 60%;
     right: 0;
     bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (min-width: 600px) {
+        left: 55%;
+        top: 10%;
+    }
 `;
 const ModalBox = _styledComponents.default.div`
     width: 300px;
     background-color: white;
-    margin-block-start: -100%;
     padding: 48px;
     text-align: center;
     transform: translate(-50%);
@@ -38780,10 +38784,10 @@ function SeatsInformation({
         console.log("I am clicked");
         setShow(true);
       }
-    }, "Book ", numberOfCheckedCheckboxes, " seats"), /*#__PURE__*/_react.default.createElement(_Modal.default, {
+    }, "Book ", numberOfCheckedCheckboxes, " seats"), numberOfCheckedCheckboxes === 0 ? /*#__PURE__*/_react.default.createElement("p", null, "Total: ", city.price, " Ar") : /*#__PURE__*/_react.default.createElement("p", null, "Total: ", city.price * numberOfCheckedCheckboxes, " Ar")), /*#__PURE__*/_react.default.createElement(_Modal.default, {
       onClose: () => setShow(false),
       show: show
-    })))));
+    }))));
   })));
 }
 

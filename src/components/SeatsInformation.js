@@ -213,9 +213,15 @@ function SeatsInformation({cities, getCities}) {
                                     <Price>
                                         <p>{city.price}</p> <b>Ar/seat</b>
                                     </Price>
-                                    <Button onClick={() => { console.log("I am clicked"); setShow(true)}}>Book {numberOfCheckedCheckboxes} seats</Button>
-                                    <Modal onClose={() => setShow(false)} show={show} />
+                                    <Button onClick={() => { console.log("I am clicked"); setShow(true)}}>
+                                        Book {numberOfCheckedCheckboxes} seats
+                                    </Button>
+                                    {numberOfCheckedCheckboxes === 0 
+                                        ? <p>Total: {city.price} Ar</p>
+                                        :<p>Total: {city.price * numberOfCheckedCheckboxes} Ar</p>
+                                    }
                                 </TotalPriceContainer>
+                                <Modal onClose={() => setShow(false)} show={show} />
                             </div>
                         </DriverInformation>
                     </Container>

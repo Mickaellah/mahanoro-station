@@ -4,6 +4,30 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
 import {getCities} from '../actions';
+import City from '../icons/city.svg';
+import NotoBus from '../icons/noto-v1_bus.svg';
+
+const Container = styled.article`
+    @media (min-width: 700px) {
+        max-width: 800px;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+
+    @media (max-width: 700px) {
+        padding: 32px;
+    }
+`;
+
+const Heading = styled.header`
+    display: flex;
+    flex-direction: row;
+    padding-block: 32px;
+
+    h2 {
+        margin-inline-start: 32px;
+    }
+`;
 
 const CityContainer = styled.ul`
     display: grid;
@@ -13,6 +37,7 @@ const CityContainer = styled.ul`
 `;
 
 const ListOfCities = styled.li`
+    display: flex;
     padding: 16px;
     background: #0F0E17;
     color: white;
@@ -23,6 +48,8 @@ const ListOfCities = styled.li`
 
     a {
         color: white;
+        margin-inline-start: 16px;
+        margin-block-start: 8px;
     }
 `;
 
@@ -40,8 +67,13 @@ function CityLists({cities, getCities}) {
     const filterMoramangaCity = cities.filter(city => city.destination === "Moramanga");
 
     return (
-        <div>
-            <h1>Where are you going?</h1>
+        <Container>
+            <Heading>
+                <img src={NotoBus} alt="bus" />
+                <h2>
+                    Where are you going?
+                </h2>
+            </Heading>
 
             <nav>
                 <CityContainer>
@@ -49,6 +81,7 @@ function CityLists({cities, getCities}) {
                         if (index === 0) {
                             return (
                                 <ListOfCities key={city.id}>
+                                    <img src={City} alt="city" />
                                     <Link to={`/city/${city.destination}`}>
                                         {city.destination}
                                     </Link>
@@ -60,6 +93,7 @@ function CityLists({cities, getCities}) {
                         if (index === 0) {
                             return (
                                 <ListOfCities key={city.id}>
+                                    <img src={City} alt="city" />
                                     <Link to={`/city/${city.destination}`}>
                                         {city.destination}
                                     </Link>
@@ -71,6 +105,7 @@ function CityLists({cities, getCities}) {
                         if (index === 0) {
                             return (
                                 <ListOfCities key={city.id}>
+                                    <img src={City} alt="city" />
                                     <Link to={`/city/${city.destination}`}>
                                         {city.destination}
                                     </Link>
@@ -82,6 +117,7 @@ function CityLists({cities, getCities}) {
                         if (index === 0) {
                             return (
                                 <ListOfCities key={city.id}>
+                                    <img src={City} alt="city" />
                                     <Link to={`/city/${city.destination}`}>
                                         {city.destination}
                                     </Link>
@@ -91,7 +127,7 @@ function CityLists({cities, getCities}) {
                     })}
                 </CityContainer>
             </nav>
-        </div>
+        </Container>
     )
 }
 

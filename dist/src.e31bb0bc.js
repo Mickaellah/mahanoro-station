@@ -38303,6 +38303,10 @@ function updateUser(user) {
     value: user
   };
 }
+},{}],"icons/city.svg":[function(require,module,exports) {
+module.exports = "/city.d86f1519.svg";
+},{}],"icons/noto-v1_bus.svg":[function(require,module,exports) {
+module.exports = "/noto-v1_bus.8e74a4cf.svg";
 },{}],"components/CityLists.js":[function(require,module,exports) {
 "use strict";
 
@@ -38321,12 +38325,36 @@ var _reactRouterDom = require("react-router-dom");
 
 var _actions = require("../actions");
 
+var _city = _interopRequireDefault(require("../icons/city.svg"));
+
+var _notoV1_bus = _interopRequireDefault(require("../icons/noto-v1_bus.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+const Container = _styledComponents.default.article`
+    @media (min-width: 700px) {
+        max-width: 800px;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+
+    @media (max-width: 700px) {
+        padding: 32px;
+    }
+`;
+const Heading = _styledComponents.default.header`
+    display: flex;
+    flex-direction: row;
+    padding-block: 32px;
+
+    h2 {
+        margin-inline-start: 32px;
+    }
+`;
 const CityContainer = _styledComponents.default.ul`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -38334,6 +38362,7 @@ const CityContainer = _styledComponents.default.ul`
     column-gap: 20px;
 `;
 const ListOfCities = _styledComponents.default.li`
+    display: flex;
     padding: 16px;
     background: #0F0E17;
     color: white;
@@ -38344,6 +38373,8 @@ const ListOfCities = _styledComponents.default.li`
 
     a {
         color: white;
+        margin-inline-start: 16px;
+        margin-block-start: 8px;
     }
 `;
 
@@ -38358,11 +38389,17 @@ function CityLists({
   const filterVatomandryCity = cities.filter(city => city.destination === "Vatomandry");
   const filterToamasinaCity = cities.filter(city => city.destination === "Toamasina");
   const filterMoramangaCity = cities.filter(city => city.destination === "Moramanga");
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Where are you going?"), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement(CityContainer, null, filterAntananarivoCity.map((city, index) => {
+  return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+    src: _notoV1_bus.default,
+    alt: "bus"
+  }), /*#__PURE__*/_react.default.createElement("h2", null, "Where are you going?")), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement(CityContainer, null, filterAntananarivoCity.map((city, index) => {
     if (index === 0) {
       return /*#__PURE__*/_react.default.createElement(ListOfCities, {
         key: city.id
-      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      }, /*#__PURE__*/_react.default.createElement("img", {
+        src: _city.default,
+        alt: "city"
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: `/city/${city.destination}`
       }, city.destination));
     }
@@ -38370,7 +38407,10 @@ function CityLists({
     if (index === 0) {
       return /*#__PURE__*/_react.default.createElement(ListOfCities, {
         key: city.id
-      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      }, /*#__PURE__*/_react.default.createElement("img", {
+        src: _city.default,
+        alt: "city"
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: `/city/${city.destination}`
       }, city.destination));
     }
@@ -38378,7 +38418,10 @@ function CityLists({
     if (index === 0) {
       return /*#__PURE__*/_react.default.createElement(ListOfCities, {
         key: city.id
-      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      }, /*#__PURE__*/_react.default.createElement("img", {
+        src: _city.default,
+        alt: "city"
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: `/city/${city.destination}`
       }, city.destination));
     }
@@ -38386,7 +38429,10 @@ function CityLists({
     if (index === 0) {
       return /*#__PURE__*/_react.default.createElement(ListOfCities, {
         key: city.id
-      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      }, /*#__PURE__*/_react.default.createElement("img", {
+        src: _city.default,
+        alt: "city"
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: `/city/${city.destination}`
       }, city.destination));
     }
@@ -38402,7 +38448,71 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(CityLists);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js"}],"components/CityInforamation.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js","../icons/city.svg":"icons/city.svg","../icons/noto-v1_bus.svg":"icons/noto-v1_bus.svg"}],"icons/small_car.svg":[function(require,module,exports) {
+module.exports = "/small_car.bae0f89e.svg";
+},{}],"components/Header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Header;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _small_car = _interopRequireDefault(require("../icons/small_car.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Heading = _styledComponents.default.header`
+    margin: 0;
+    width: 100%none;
+    display: flex;
+    padding-inline: 24px;
+    justify-content: space-between;
+    background-color: black;
+
+    a {
+        display: flex;
+        flex-direction: row;
+        font-size: 24px;
+        color: white;
+        margin: 0;
+
+        p {
+            margin-inline-start: 16px;
+        }
+    }
+
+    div {
+        margin-block-start: 28px;
+        a {
+            color: white;
+        }
+
+        a:focus {
+            color: orange;
+        }
+    }
+`;
+
+function Header() {
+  return /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _small_car.default,
+    alt: "car"
+  }), /*#__PURE__*/_react.default.createElement("p", null, "Mahanoro station")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/user"
+  }, "My account")));
+}
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../icons/small_car.svg":"icons/small_car.svg"}],"icons/twemoji_alarm-clock.svg":[function(require,module,exports) {
+module.exports = "/twemoji_alarm-clock.1ecc03b4.svg";
+},{}],"components/NextTrip.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38420,6 +38530,10 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _actions = require("../actions");
 
+var _twemoji_alarmClock = _interopRequireDefault(require("../icons/twemoji_alarm-clock.svg"));
+
+var _notoV1_bus = _interopRequireDefault(require("../icons/noto-v1_bus.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -38429,6 +38543,25 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 const Container = _styledComponents.default.section`
     padding: 32px;
     text-align: center;
+
+    @media (min-width: 700px) {
+        max-width: 800px;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+`;
+const Heading = _styledComponents.default.header`
+    display: flex;
+    flex-direction: row;
+
+    h1 {
+        margin-inline-start: 32px;
+        display: flex;
+        flex-direction: column;
+    }
+`;
+const NextTrip = _styledComponents.default.p`
+    margin-bottom: 0;
 `;
 const CityContainer = _styledComponents.default.article`
     display: flex;
@@ -38464,7 +38597,10 @@ const ButtonDisabled = _styledComponents.default.div`
 const DepartureTime = _styledComponents.default.p`
     color: orange;
 `;
-const Destination = _styledComponents.default.small`
+const Destination = _styledComponents.default.p`
+    color: #E53170;
+`;
+const AvailableSeats = _styledComponents.default.small`
     color: #E53170;
 `;
 
@@ -38479,17 +38615,23 @@ function CityInformation({
     destination
   } = (0, _reactRouterDom.useParams)();
   const cityInformation = cities.filter(city => city.destination.toLowerCase() === destination.toLowerCase());
-  return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("h1", null, "Next trips to: ", /*#__PURE__*/_react.default.createElement(Destination, null, destination)), cityInformation.map(city => {
+  return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+    src: _twemoji_alarmClock.default,
+    alt: "clock"
+  }), /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement(NextTrip, null, "Next trips to:"), /*#__PURE__*/_react.default.createElement(Destination, null, destination))), cityInformation.map(city => {
     const availableSeats = city.seats.filter(seat => seat.isAvailable === true);
     const miliseconds = city.departureTime * 1000;
     const dateObject = new Date(miliseconds);
     return /*#__PURE__*/_react.default.createElement(CityContainer, {
       key: city.id
-    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
+    }, /*#__PURE__*/_react.default.createElement("img", {
+      src: _notoV1_bus.default,
+      alt: "bus"
+    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
       weekday: "long"
     })), /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
       hour: "numeric"
-    }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, dateObject.toLocaleDateString()), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(Destination, null, availableSeats.length), " seats left")), availableSeats.length > 0 ? /*#__PURE__*/_react.default.createElement(Button, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, dateObject.toLocaleDateString()), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(AvailableSeats, null, availableSeats.length), " seats left")), availableSeats.length > 0 ? /*#__PURE__*/_react.default.createElement(Button, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: `/${city.destination}/${city.id}`,
       type: "button"
     }, "Book a seat")) : /*#__PURE__*/_react.default.createElement(ButtonDisabled, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
@@ -38508,7 +38650,9 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(CityInformation);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js"}],"components/Modal.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js","../icons/twemoji_alarm-clock.svg":"icons/twemoji_alarm-clock.svg","../icons/noto-v1_bus.svg":"icons/noto-v1_bus.svg"}],"icons/confirming.svg":[function(require,module,exports) {
+module.exports = "/confirming.0116ee27.svg";
+},{}],"components/Modal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38522,6 +38666,8 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _confirming = _interopRequireDefault(require("../icons/confirming.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const ModalContainer = _styledComponents.default.div`
@@ -38533,10 +38679,13 @@ const ModalContainer = _styledComponents.default.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: translateY(150%);
 
     @media (min-width: 600px) {
         left: 55%;
         top: 10%;
+        transform: translateY(0%);
+        transform: translateX(20%);
     }
 `;
 const ModalBox = _styledComponents.default.div`
@@ -38587,14 +38736,17 @@ function Modal(props) {
     return null;
   }
 
-  return /*#__PURE__*/_react.default.createElement(ModalContainer, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(ModalBox, null, /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("h2", null, "Booking confirmed!"), /*#__PURE__*/_react.default.createElement(CloseButton, {
+  return /*#__PURE__*/_react.default.createElement(ModalContainer, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(ModalBox, null, /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("img", {
+    src: _confirming.default,
+    alt: "confirm"
+  }), /*#__PURE__*/_react.default.createElement("h2", null, "Booking confirmed!"), /*#__PURE__*/_react.default.createElement(CloseButton, {
     onClick: props.onClose
   }, "X")), /*#__PURE__*/_react.default.createElement("p", null, "Thank you for trusting our services. Your booking has been added to your account. You can review it there."), /*#__PURE__*/_react.default.createElement(Button, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/user"
   }, "Checkbox your acount")))));
 }
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"icons/chair-24px.svg":[function(require,module,exports) {
-module.exports = "/chair-24px.dd0868fb.svg";
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../icons/confirming.svg":"icons/confirming.svg"}],"icons/seat.svg":[function(require,module,exports) {
+module.exports = "/seat.c06c59c9.svg";
 },{}],"components/SeatsInformation.js":[function(require,module,exports) {
 "use strict";
 
@@ -38615,7 +38767,9 @@ var _actions = require("../actions");
 
 var _Modal = _interopRequireDefault(require("./Modal"));
 
-var _chair24px = _interopRequireDefault(require("../icons/chair-24px.svg"));
+var _seat = _interopRequireDefault(require("../icons/seat.svg"));
+
+var _notoV1_bus = _interopRequireDefault(require("../icons/noto-v1_bus.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38626,12 +38780,22 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 const MainContainer = _styledComponents.default.section`
     padding: 32px;
     text-align: center;
+
+    @media (min-width: 700px) {
+        max-width: 800px;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+`;
+const Heading = _styledComponents.default.header`
+    display: flex;
+    flex-direction: row;
 `;
 const Header = _styledComponents.default.h1`
-    text-transform: uppercase;
+    margin-inline-start: 32px;
 
-    small {
-        text-transform: capitalize;
+    p {
+        margin-block-start: 0;
     }
 `;
 const SeatInformationContainer = _styledComponents.default.div`
@@ -38656,6 +38820,10 @@ const Container = _styledComponents.default.div`
         column-gap: 32px;
     }
 `;
+const Destination = _styledComponents.default.p`
+    color: #E53170;
+    margin-block-end: 10px;
+`;
 const DriverInformation = _styledComponents.default.article`
     text-align: start;
 `;
@@ -38669,12 +38837,6 @@ linear-gradient(0deg, #E53170, #E53170);
 const AvailableSeat = _styledComponents.default.img`
     width: 48px;
     height: 48px;
-`;
-const SelectedSeats = _styledComponents.default.img`
-    width: 48px;
-    height: 48px;
-    padding-inline: 8px;
-    background-color: orange;
 `;
 const Information = _styledComponents.default.div`
     display: flex;
@@ -38750,7 +38912,10 @@ function SeatsInformation({
   }
 
   let numberOfCheckedCheckboxes = checkedCheckboxes.length;
-  return /*#__PURE__*/_react.default.createElement(MainContainer, null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement(Header, null, "Book a seat to: ", /*#__PURE__*/_react.default.createElement("small", null, destination))), /*#__PURE__*/_react.default.createElement(SeatInformationContainer, null, seatInformation.map(city => {
+  return /*#__PURE__*/_react.default.createElement(MainContainer, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+    src: _notoV1_bus.default,
+    alt: "bus"
+  }), /*#__PURE__*/_react.default.createElement(Header, null, /*#__PURE__*/_react.default.createElement("p", null, "Book a seat to:"), /*#__PURE__*/_react.default.createElement(Destination, null, destination))), /*#__PURE__*/_react.default.createElement(SeatInformationContainer, null, seatInformation.map(city => {
     const miliseconds = city.departureTime * 1000;
     const dateObject = new Date(miliseconds);
     return /*#__PURE__*/_react.default.createElement(Container, {
@@ -38759,12 +38924,12 @@ function SeatsInformation({
       function seats() {
         if (seat.isAvailable) {
           return /*#__PURE__*/_react.default.createElement(AvailableSeat, {
-            src: _chair24px.default,
+            src: _seat.default,
             alt: "seat"
           });
         } else {
           return /*#__PURE__*/_react.default.createElement(Seat, {
-            src: _chair24px.default,
+            src: _seat.default,
             alt: "seat"
           });
         }
@@ -38802,7 +38967,9 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(SeatsInformation);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js","./Modal":"components/Modal.js","../icons/chair-24px.svg":"icons/chair-24px.svg"}],"components/UserAccount.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js","./Modal":"components/Modal.js","../icons/seat.svg":"icons/seat.svg","../icons/noto-v1_bus.svg":"icons/noto-v1_bus.svg"}],"icons/account.svg":[function(require,module,exports) {
+module.exports = "/account.4f49975b.svg";
+},{}],"components/UserAccount.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38818,18 +38985,38 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _actions = require("../actions");
 
+var _account = _interopRequireDefault(require("../icons/account.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+const Content = _styledComponents.default.section`
+    @media (min-width: 700px) {
+        max-width: 800px;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+`;
 const Container = _styledComponents.default.div`
     @media (min-width: 600px) {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
+`;
+const Heading = _styledComponents.default.header`
+    display: flex;
+    flex-direction: row;
+
+    h1 {
+        margin-inline-start: 32px;
+    }
+`;
+const UserName = _styledComponents.default.p`
+    color: #E53170;
 `;
 const Fieldset = _styledComponents.default.fieldset`
     border: none;
@@ -38843,6 +39030,7 @@ const Input = _styledComponents.default.input`
     border: none;
     background: #000000;
     margin-block-start: 8px;
+    color: orange;
 `;
 const Button = _styledComponents.default.button`
     padding-block: 16px;
@@ -38871,11 +39059,13 @@ function UserAccount({
     updateUser();
   }
 
-  console.log(user);
   return /*#__PURE__*/_react.default.createElement("div", null, user.map(user => {
-    return /*#__PURE__*/_react.default.createElement("section", {
+    return /*#__PURE__*/_react.default.createElement(Content, {
       key: user.id
-    }, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "My account: ", user.passengerFirstName, " ", user.passengerLastName)), /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My personnal informations:")), /*#__PURE__*/_react.default.createElement("form", {
+    }, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+      src: _account.default,
+      alt: "account"
+    }), /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement("p", null, "My account:"), /*#__PURE__*/_react.default.createElement(UserName, null, user.passengerFirstName, " ", user.passengerLastName))), /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My personnal informations:")), /*#__PURE__*/_react.default.createElement("form", {
       onSubmit: handleSubmit
     }, /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "First name"), /*#__PURE__*/_react.default.createElement(Input, {
       type: "text",
@@ -38911,7 +39101,7 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(UserAccount);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js","../icons/account.svg":"icons/account.svg"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38925,7 +39115,9 @@ var _reactRouterDom = require("react-router-dom");
 
 var _CityLists = _interopRequireDefault(require("./components/CityLists"));
 
-var _CityInforamation = _interopRequireDefault(require("./components/CityInforamation"));
+var _Header = _interopRequireDefault(require("./components/Header"));
+
+var _NextTrip = _interopRequireDefault(require("./components/NextTrip"));
 
 var _SeatsInformation = _interopRequireDefault(require("./components/SeatsInformation"));
 
@@ -38937,18 +39129,18 @@ function App() {
   return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/"
-  }, /*#__PURE__*/_react.default.createElement(_CityLists.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_CityLists.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/city/:destination"
-  }, /*#__PURE__*/_react.default.createElement(_CityInforamation.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_NextTrip.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/:destination/:id"
-  }, /*#__PURE__*/_react.default.createElement(_SeatsInformation.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_SeatsInformation.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/user"
-  }, /*#__PURE__*/_react.default.createElement(_UserAccount.default, null))));
+  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_UserAccount.default, null))));
 }
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/CityLists":"components/CityLists.js","./components/CityInforamation":"components/CityInforamation.js","./components/SeatsInformation":"components/SeatsInformation.js","./components/UserAccount":"components/UserAccount.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/CityLists":"components/CityLists.js","./components/Header":"components/Header.js","./components/NextTrip":"components/NextTrip.js","./components/SeatsInformation":"components/SeatsInformation.js","./components/UserAccount":"components/UserAccount.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -38994,7 +39186,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55094" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58705" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

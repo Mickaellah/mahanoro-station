@@ -5,10 +5,33 @@ import styled from 'styled-components';
 import {useParams} from 'react-router-dom';
 
 import {getCities} from '../actions';
+import Clock from '../icons/twemoji_alarm-clock.svg';
+import Bus from '../icons/noto-v1_bus.svg';
 
 const Container = styled.section`
     padding: 32px;
     text-align: center;
+
+    @media (min-width: 700px) {
+        max-width: 800px;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+`;
+
+const Heading = styled.header`
+    display: flex;
+    flex-direction: row;
+
+    h1 {
+        margin-inline-start: 32px;
+        display: flex;
+        flex-direction: column;
+    }
+`;
+
+const NextTrip = styled.p`
+    margin-bottom: 0;
 `;
 
 const CityContainer = styled.article`
@@ -49,7 +72,11 @@ const DepartureTime = styled.p`
     color: orange;
 `;
 
-const Destination = styled.small`
+const Destination = styled.p`
+    color: #E53170;
+`;
+
+const AvailableSeats = styled.small`
     color: #E53170;
 `;
 
@@ -63,7 +90,13 @@ function CityInformation({cities, getCities}) {
 
     return (
         <Container>
-            <h1>Next trips to: <Destination>{destination}</Destination></h1>
+            <Heading>
+                <img src={Clock} alt="clock" />
+                <h1>
+                    <NextTrip>Next trips to:</NextTrip> 
+                    <Destination>{destination}</Destination>
+                </h1>
+            </Heading>
            {cityInformation.map((city) => {
                 const availableSeats = city.seats.filter((seat) => seat.isAvailable === true);
 
@@ -71,6 +104,7 @@ function CityInformation({cities, getCities}) {
                 const dateObject = new Date(miliseconds);
                 return (
                     <CityContainer key={city.id}>
+                        <img src={Bus} alt="bus" />
                         <div>
                             <DepartureTime>
                                 {dateObject.toLocaleString("en-US", {weekday: "long"})}
@@ -81,7 +115,7 @@ function CityInformation({cities, getCities}) {
                         </div>
                         <div>
                             <p>{dateObject.toLocaleDateString()}</p>
-                            <p><Destination>{availableSeats.length}</Destination> seats left</p>
+                            <p><AvailableSeats>{availableSeats.length}</AvailableSeats> seats left</p>
                         </div>
                         {availableSeats.length > 0 
                             ? 

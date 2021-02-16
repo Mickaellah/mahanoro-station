@@ -3,6 +3,15 @@ import {connect} from 'react-redux';
 import styled from 'styled-components';
 
 import {getUser, updateUser} from '../actions';
+import Account from '../icons/account.svg';
+
+const Content = styled.section`
+    @media (min-width: 700px) {
+        max-width: 800px;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+`;
 
 const Container = styled.div`
     @media (min-width: 600px) {
@@ -10,6 +19,19 @@ const Container = styled.div`
         flex-direction: row;
         justify-content: space-between;
     }
+`;
+
+const Heading = styled.header`
+    display: flex;
+    flex-direction: row;
+
+    h1 {
+        margin-inline-start: 32px;
+    }
+`;
+
+const UserName = styled.p`
+    color: #E53170;
 `;
 
 const Fieldset = styled.fieldset`
@@ -25,6 +47,7 @@ const Input = styled.input`
     border: none;
     background: #000000;
     margin-block-start: 8px;
+    color: orange;
 `;
 
 const Button = styled.button`
@@ -50,15 +73,19 @@ function UserAccount({user, updateUser}) {
         e.preventDefault();
         updateUser();
     }
-    console.log(user);
+
     return (
         <div>
             {user.map(user => {
                 return (
-                    <section key={user.id}>
-                        <header>
-                            <h1>My account: {user.passengerFirstName} {user.passengerLastName}</h1>
-                        </header>
+                    <Content key={user.id}>
+                        <Heading>
+                            <img src={Account} alt="account" />
+                            <h1>
+                                <p>My account:</p>
+                                <UserName>{user.passengerFirstName} {user.passengerLastName}</UserName>
+                            </h1>
+                        </Heading>
                         <Container>
                             <article>
                                 <header>
@@ -90,7 +117,7 @@ function UserAccount({user, updateUser}) {
                                 </header>
                             </article>
                         </Container>
-                    </section>
+                    </Content>
                 )
             })}
         </div>

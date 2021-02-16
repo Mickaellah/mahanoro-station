@@ -5,18 +5,30 @@ import {useParams} from 'react-router-dom';
 
 import {getCities} from '../actions';
 import Modal from './Modal';
-import chair from '../icons/chair-24px.svg';
+import chair from '../icons/seat.svg';
+import Bus from '../icons/noto-v1_bus.svg';
 
 const MainContainer = styled.section`
     padding: 32px;
     text-align: center;
+
+    @media (min-width: 700px) {
+        max-width: 800px;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+`;
+
+const Heading = styled.header`
+    display: flex;
+    flex-direction: row;
 `;
 
 const Header = styled.h1`
-    text-transform: uppercase;
+    margin-inline-start: 32px;
 
-    small {
-        text-transform: capitalize;
+    p {
+        margin-block-start: 0;
     }
 `;
 
@@ -45,6 +57,11 @@ const Container = styled.div`
     }
 `;
 
+const Destination = styled.p`
+    color: #E53170;
+    margin-block-end: 10px;
+`;
+
 const DriverInformation = styled.article`
     text-align: start;
 `;
@@ -61,13 +78,6 @@ linear-gradient(0deg, #E53170, #E53170);
 const AvailableSeat = styled.img`
     width: 48px;
     height: 48px;
-`;
-
-const SelectedSeats = styled.img`
-    width: 48px;
-    height: 48px;
-    padding-inline: 8px;
-    background-color: orange;
 `;
 
 const Information = styled.div`
@@ -145,9 +155,13 @@ function SeatsInformation({cities, getCities}) {
     let numberOfCheckedCheckboxes = checkedCheckboxes.length;
     return (
         <MainContainer >
-            <header>
-                <Header>Book a seat to: <small>{destination}</small></Header>
-            </header>
+            <Heading>
+                <img src={Bus} alt="bus" />
+                <Header>
+                    <p>Book a seat to:</p>
+                    <Destination>{destination}</Destination>
+                </Header>
+            </Heading>
             <SeatInformationContainer>
             {seatInformation.map(city => {
             const miliseconds = city.departureTime * 1000;

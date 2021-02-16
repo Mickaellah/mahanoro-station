@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
+import Confirming from '../icons/confirming.svg';
+
 const ModalContainer = styled.div`
     position: absolute;
     left: 80%;
@@ -11,10 +13,13 @@ const ModalContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: translateY(150%);
 
     @media (min-width: 600px) {
         left: 55%;
         top: 10%;
+        transform: translateY(0%);
+        transform: translateX(20%);
     }
 `;
 
@@ -73,6 +78,7 @@ export default function Modal(props) {
             <div>
                 <ModalBox>
                     <Container>
+                        <img src={Confirming} alt="confirm" />
                         <h2>Booking confirmed!</h2>
                         <CloseButton onClick={props.onClose}>X</CloseButton>
                     </Container>

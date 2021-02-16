@@ -105,6 +105,14 @@ const Price = styled.div`
     }
 `;
 
+const Input = styled.input`
+    display: none;
+`;
+
+const Label = styled.label`
+    cursor: pointer;
+`;
+
 function SeatsInformation({cities, getCities}) {
     useEffect(() => {
         getCities();
@@ -165,10 +173,10 @@ function SeatsInformation({cities, getCities}) {
 
                                 return (
                                     <form key={seat.id}>
-                                        <input type='checkbox' value={isChecked} onChange={handleCheckbox} />
-                                        <label className="label">
+                                        <Label className="label">
+                                            <Input type='checkbox' value={isChecked} onChange={handleCheckbox} />
                                             {seats()}
-                                        </label>
+                                        </Label>
                                     </form>
                                 )
                             })}

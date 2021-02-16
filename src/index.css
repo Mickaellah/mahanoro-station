@@ -39,7 +39,7 @@ button {
     color: #FF8906;
 }
 
-input[type="checkbox"]:checked ~ .label img {
+input[type="checkbox"]:checked ~ img {
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%),
 linear-gradient(360deg, #FFAC33 117.76%, rgba(255, 255, 255, 0) 187.45%);
 }

@@ -38569,6 +38569,7 @@ const Button = _styledComponents.default.div`
     margin-block-start: 32px;
     background: #E53170;
     color: white;
+    cursor: pointer;
 
     a {
         color: white;
@@ -38699,6 +38700,12 @@ const Price = _styledComponents.default.div`
         margin-block-start: 16px;
     }
 `;
+const Input = _styledComponents.default.input`
+    display: none;
+`;
+const Label = _styledComponents.default.label`
+    cursor: pointer;
+`;
 
 function SeatsInformation({
   cities,
@@ -38759,13 +38766,13 @@ function SeatsInformation({
 
       return /*#__PURE__*/_react.default.createElement("form", {
         key: seat.id
-      }, /*#__PURE__*/_react.default.createElement("input", {
+      }, /*#__PURE__*/_react.default.createElement(Label, {
+        className: "label"
+      }, /*#__PURE__*/_react.default.createElement(Input, {
         type: "checkbox",
         value: isChecked,
         onChange: handleCheckbox
-      }), /*#__PURE__*/_react.default.createElement("label", {
-        className: "label"
-      }, seats()));
+      }), seats()));
     }))), /*#__PURE__*/_react.default.createElement(DriverInformation, null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement(Header, null, "Trip informations:")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Departure time:"), /*#__PURE__*/_react.default.createElement(BoldText, null, dateObject.toLocaleString("en-US", {
       hour: "numeric"
     }), ", ", dateObject.toLocaleDateString())), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverName)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver's contact:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverContact)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Estimated duration:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.estimatedDuration)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Breaks:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.breaks)), /*#__PURE__*/_react.default.createElement(TotalPriceContainer, null, /*#__PURE__*/_react.default.createElement(Price, null, /*#__PURE__*/_react.default.createElement("p", null, city.price), " ", /*#__PURE__*/_react.default.createElement("b", null, "Ar/seat")), /*#__PURE__*/_react.default.createElement(Button, {

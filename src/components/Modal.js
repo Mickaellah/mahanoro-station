@@ -53,6 +53,7 @@ const Button = styled.div`
     margin-block-start: 32px;
     background: #E53170;
     color: white;
+    cursor: pointer;
 
     a {
         color: white;

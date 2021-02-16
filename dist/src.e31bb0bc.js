@@ -33324,7 +33324,7 @@ function cities(state = [], action) {
   }
 }
 
-function user(state = [], action) {
+function user(state = {}, action) {
   switch (action.type) {
     case "GET_USER":
       {
@@ -33333,7 +33333,9 @@ function user(state = [], action) {
 
     case "UPDATE_USER":
       {
-        return [...state, action.value];
+        return [{ ...state,
+          ...action.value
+        }];
       }
 
     default:

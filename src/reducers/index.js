@@ -9,15 +9,16 @@ function cities(state = [], action) {
     }
 }
 
-function user(state = [], action) {
+function user(state = {}, action) {
     switch(action.type) {
         case "GET_USER": {
             return action.value
         }
         case "UPDATE_USER": {
-            return [
-                ...state, action.value
-            ]
+            return [{
+                ...state, 
+                ...action.value
+            }]
         }
         default:
             return state

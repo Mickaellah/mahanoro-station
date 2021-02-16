@@ -38722,6 +38722,21 @@ function SeatsInformation({
   } = (0, _reactRouterDom.useParams)();
   const destinationCity = cities.filter(city => city.destination.toLowerCase() == destination.toLowerCase());
   const seatInformation = destinationCity.filter(city => Number(city.id) === Number(id));
+  let inputs = document.getElementsByTagName("input");
+  let checkboxes = [];
+  let checkedCheckboxes = [];
+
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].type == "checkbox") {
+      checkboxes.push(inputs[i]);
+
+      if (inputs[i].checked) {
+        checkedCheckboxes.push(inputs[i]);
+      }
+    }
+  }
+
+  let numberOfCheckedCheckboxes = checkedCheckboxes.length;
   return /*#__PURE__*/_react.default.createElement(MainContainer, null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement(Header, null, "Book a seat to: ", /*#__PURE__*/_react.default.createElement("small", null, destination))), /*#__PURE__*/_react.default.createElement(SeatInformationContainer, null, seatInformation.map(city => {
     const miliseconds = city.departureTime * 1000;
     const dateObject = new Date(miliseconds);
@@ -38731,11 +38746,6 @@ function SeatsInformation({
       function seats() {
         if (seat.isAvailable) {
           return /*#__PURE__*/_react.default.createElement(AvailableSeat, {
-            src: _chair24px.default,
-            alt: "seat"
-          });
-        } else if (seat.isAvailable && isChecked) {
-          return /*#__PURE__*/_react.default.createElement(SelectedSeats, {
             src: _chair24px.default,
             alt: "seat"
           });
@@ -38753,7 +38763,9 @@ function SeatsInformation({
         type: "checkbox",
         value: isChecked,
         onChange: handleCheckbox
-      }), /*#__PURE__*/_react.default.createElement("label", null, seats()));
+      }), /*#__PURE__*/_react.default.createElement("label", {
+        className: "label"
+      }, seats()));
     }))), /*#__PURE__*/_react.default.createElement(DriverInformation, null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement(Header, null, "Trip informations:")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Departure time:"), /*#__PURE__*/_react.default.createElement(BoldText, null, dateObject.toLocaleString("en-US", {
       hour: "numeric"
     }), ", ", dateObject.toLocaleDateString())), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverName)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver's contact:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverContact)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Estimated duration:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.estimatedDuration)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Breaks:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.breaks)), /*#__PURE__*/_react.default.createElement(TotalPriceContainer, null, /*#__PURE__*/_react.default.createElement(Price, null, /*#__PURE__*/_react.default.createElement("p", null, city.price), " ", /*#__PURE__*/_react.default.createElement("b", null, "Ar/seat")), /*#__PURE__*/_react.default.createElement(Button, {
@@ -38761,7 +38773,7 @@ function SeatsInformation({
         console.log("I am clicked");
         setShow(true);
       }
-    }, "Book ", " seats"), /*#__PURE__*/_react.default.createElement(_Modal.default, {
+    }, "Book ", numberOfCheckedCheckboxes, " seats"), /*#__PURE__*/_react.default.createElement(_Modal.default, {
       onClose: () => setShow(false),
       show: show
     })))));

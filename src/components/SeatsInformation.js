@@ -122,6 +122,19 @@ function SeatsInformation({cities, getCities}) {
     const destinationCity = cities.filter((city) => city.destination.toLowerCase() == destination.toLowerCase());
 
     const seatInformation = destinationCity.filter((city) => Number(city.id) === Number(id));
+
+    let inputs = document.getElementsByTagName("input");
+    let checkboxes = [];
+    let checkedCheckboxes = [];
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].type == "checkbox") {
+            checkboxes.push(inputs[i]);
+            if (inputs[i].checked) {
+                checkedCheckboxes.push(inputs[i]);
+            }
+        }
+    }
+    let numberOfCheckedCheckboxes = checkedCheckboxes.length;
     return (
         <MainContainer >
             <header>
@@ -145,16 +158,15 @@ function SeatsInformation({cities, getCities}) {
                                 function seats() {
                                     if (seat.isAvailable) {
                                         return <AvailableSeat src={chair} alt="seat" />
-                                    } else if (seat.isAvailable && isChecked) {
-                                        return <SelectedSeats src={chair} alt="seat" />
                                     } else {
                                         return <Seat src={chair} alt="seat" />
                                     }
                                 }
+
                                 return (
                                     <form key={seat.id}>
                                         <input type='checkbox' value={isChecked} onChange={handleCheckbox} />
-                                        <label>
+                                        <label className="label">
                                             {seats()}
                                         </label>
                                     </form>
@@ -193,7 +205,7 @@ function SeatsInformation({cities, getCities}) {
                                     <Price>
                                         <p>{city.price}</p> <b>Ar/seat</b>
                                     </Price>
-                                    <Button onClick={() => { console.log("I am clicked"); setShow(true)}}>Book {} seats</Button>
+                                    <Button onClick={() => { console.log("I am clicked"); setShow(true)}}>Book {numberOfCheckedCheckboxes} seats</Button>
                                     <Modal onClose={() => setShow(false)} show={show} />
                                 </TotalPriceContainer>
                             </div>

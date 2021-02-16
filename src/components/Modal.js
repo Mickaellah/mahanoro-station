@@ -32,7 +32,7 @@ const ModalBox = styled.div`
     border: 5px solid #E53170;
 
     @media (min-width: 600px) {
-        transform: translate(-95%);
+        transform: translate(-95%, 60%);
     }
 `;
 

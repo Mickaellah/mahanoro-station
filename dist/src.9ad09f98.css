@@ -1,6 +1,41 @@
+@font-face {
+    font-family: "Rubik bold";
+    src: url('/Rubik-Bold.dc898c8b.woff2') format('woff2'),
+        url('/Rubik-Bold.387f1d1b.woff') format('woff');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Rubik medium";
+    src: url('/Rubik-Medium.1a2d45f0.woff2') format("woff2"),
+        url('/Rubik-Medium.6af22582.woff') format("woff");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Rubik regular";
+    src: url('/Rubik-Regular.3e635f3a.woff2') format("woff2"),
+        url('/Rubik-Regular.d8384832.woff') format("woff");
+    font-weight: 400;
+}
 body {
+    font-family: "Rubik regular";
     margin: 0;
     padding: 0;
+
+}
+
+h1,
+h2 {
+    font-family: "Rubik bold";
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Rubik medium";
+    font-size: 24px;
 }
 
 a {

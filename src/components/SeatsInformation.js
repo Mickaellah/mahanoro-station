@@ -52,8 +52,8 @@ const Container = styled.div`
     @media (min-width: 600px) {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-column-gap: 32px;
-        column-gap: 32px;
+        grid-column-gap: 48px;
+        column-gap: 48px;
     }
 `;
 
@@ -99,7 +99,7 @@ const Button = styled.button`
 `;
 
 const TotalPriceContainer = styled.div`
-    transform: translate(55%);
+    transform: translate(45%);
 `;
 
 const Price = styled.div`

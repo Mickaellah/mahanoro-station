@@ -38697,7 +38697,7 @@ const ModalBox = _styledComponents.default.div`
     border: 5px solid #E53170;
 
     @media (min-width: 600px) {
-        transform: translate(-95%);
+        transform: translate(-95%, 60%);
     }
 `;
 const Container = _styledComponents.default.div`
@@ -38816,8 +38816,8 @@ const Container = _styledComponents.default.div`
     @media (min-width: 600px) {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-column-gap: 32px;
-        column-gap: 32px;
+        grid-column-gap: 48px;
+        column-gap: 48px;
     }
 `;
 const Destination = _styledComponents.default.p`
@@ -38854,7 +38854,7 @@ const Button = _styledComponents.default.button`
     color: white;
 `;
 const TotalPriceContainer = _styledComponents.default.div`
-    transform: translate(55%);
+    transform: translate(45%);
 `;
 const Price = _styledComponents.default.div`
     display: flex;

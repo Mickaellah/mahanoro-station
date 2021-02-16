@@ -6,6 +6,7 @@ import {getUser, updateUser} from '../actions';
 import Account from '../icons/account.svg';
 
 const Content = styled.section`
+    padding: 32px;
     @media (min-width: 700px) {
         max-width: 800px;
         margin-inline-start: auto;
@@ -15,9 +16,10 @@ const Content = styled.section`
 
 const Container = styled.div`
     @media (min-width: 600px) {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 32px;
+        column-gap: 32px;
     }
 `;
 
@@ -48,6 +50,11 @@ const Input = styled.input`
     background: #000000;
     margin-block-start: 8px;
     color: orange;
+    width: 70%;
+
+    @media (mix-width: 700px) {
+        width: 100%;
+    }
 `;
 
 const Button = styled.button`
@@ -57,11 +64,6 @@ const Button = styled.button`
     margin-block-start: 32px;
     background: #E53170;
     color: white;
-    margin-inline-start: 72%;
-
-    @media (min-width: 600px) {
-        margin-inline-start: 50%;
-    }
 `;
 
 function UserAccount({user, updateUser}) {

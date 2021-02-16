@@ -38994,6 +38994,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const Content = _styledComponents.default.section`
+    padding: 32px;
     @media (min-width: 700px) {
         max-width: 800px;
         margin-inline-start: auto;
@@ -39002,9 +39003,10 @@ const Content = _styledComponents.default.section`
 `;
 const Container = _styledComponents.default.div`
     @media (min-width: 600px) {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 32px;
+        column-gap: 32px;
     }
 `;
 const Heading = _styledComponents.default.header`
@@ -39031,6 +39033,11 @@ const Input = _styledComponents.default.input`
     background: #000000;
     margin-block-start: 8px;
     color: orange;
+    width: 70%;
+
+    @media (mix-width: 700px) {
+        width: 100%;
+    }
 `;
 const Button = _styledComponents.default.button`
     padding-block: 16px;
@@ -39039,11 +39046,6 @@ const Button = _styledComponents.default.button`
     margin-block-start: 32px;
     background: #E53170;
     color: white;
-    margin-inline-start: 72%;
-
-    @media (min-width: 600px) {
-        margin-inline-start: 50%;
-    }
 `;
 
 function UserAccount({

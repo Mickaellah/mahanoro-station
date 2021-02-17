@@ -13,7 +13,7 @@ const MainContainer = styled.section`
     text-align: center;
 
     @media (min-width: 700px) {
-        max-width: 800px;
+        max-width: 1114px;
         margin-inline-start: auto;
         margin-inline-end: auto;
     }
@@ -134,6 +134,7 @@ function SeatsInformation({cities, getCities}) {
         getCities();
     }, []);
     const [isChecked, setIsChecked] = useState(false);
+    const [isAvailable, setIsAvailable] = useState(true);
     const [show, setShow] = useState(false);
 
     const {id} = useParams();
@@ -188,7 +189,7 @@ function SeatsInformation({cities, getCities}) {
 
                                 function handleCheckbox() {
                                     setIsChecked(!isChecked);
-                                    seat.isAvailable === !seat.isAvailable;
+                                    setIsAvailable(!seat.isAvailable);
                                 }
 
                                 return (

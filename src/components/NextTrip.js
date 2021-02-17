@@ -13,7 +13,7 @@ const Container = styled.section`
     text-align: center;
 
     @media (min-width: 700px) {
-        max-width: 800px;
+        max-width: 1114px;
         margin-inline-start: auto;
         margin-inline-end: auto;
     }

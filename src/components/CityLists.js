@@ -9,7 +9,7 @@ import NotoBus from '../icons/noto-v1_bus.svg';
 
 const Container = styled.article`
     @media (min-width: 700px) {
-        max-width: 800px;
+        max-width: 1114px;
         margin-inline-start: auto;
         margin-inline-end: auto;
     }

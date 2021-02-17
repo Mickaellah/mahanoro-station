@@ -38393,7 +38393,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 const Container = _styledComponents.default.article`
     @media (min-width: 700px) {
-        max-width: 800px;
+        max-width: 1114px;
         margin-inline-start: auto;
         margin-inline-end: auto;
     }
@@ -38601,7 +38601,7 @@ const Container = _styledComponents.default.section`
     text-align: center;
 
     @media (min-width: 700px) {
-        max-width: 800px;
+        max-width: 1114px;
         margin-inline-start: auto;
         margin-inline-end: auto;
     }
@@ -38841,7 +38841,7 @@ const MainContainer = _styledComponents.default.section`
     text-align: center;
 
     @media (min-width: 700px) {
-        max-width: 800px;
+        max-width: 1114px;
         margin-inline-start: auto;
         margin-inline-end: auto;
     }
@@ -38947,6 +38947,7 @@ function SeatsInformation({
     getCities();
   }, []);
   const [isChecked, setIsChecked] = (0, _react.useState)(false);
+  const [isAvailable, setIsAvailable] = (0, _react.useState)(true);
   const [show, setShow] = (0, _react.useState)(false);
   const {
     id
@@ -38996,7 +38997,7 @@ function SeatsInformation({
 
       function handleCheckbox() {
         setIsChecked(!isChecked);
-        seat.isAvailable === !seat.isAvailable;
+        setIsAvailable(!seat.isAvailable);
       }
 
       return /*#__PURE__*/_react.default.createElement("form", {

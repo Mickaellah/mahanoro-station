@@ -1,38 +1,60 @@
-# Graded Project - Mahanoro Station
+# hit-parade-react
 
-![Design preview for the Mahanoro station coding challenge](./design/1.png)
+## Table of Contents
 
-## The challenge
+-   [Overview](#overview)
+    -   [Built With](#built-with)
+-   [Features](#features)
+-   [How does it work](#how-does-it-work)
+-   [How To use](#how-to-use)
+-   [Contact](#contact)
 
-Your challenge is to build out this app and get it working with **redux**, **compound components** and **styled components**, while making it look as close to the design as possible.
+<!-- OVERVIEW -->
 
-This is a website that will allow us to reserve some seats in _"Taxi brousses"_ departing from Mahanoro station.
+## Overview
 
-Your users should be able to:
+![screenshot](./home.jpg)
+![screenshot](./next-trip.jpg)
+![screenshot](./booking.jpg)
+![screenshot](./confirming.jpg)
 
-- Pick a city from the city list
-- See the available trips to that city, and pick one where seats are still availalable
-- Select one or more seats in the car, and see how much it's going to cost
-- Confirm the booking
-- See their confirmed bookings on the 'My account'page
-- Modify their own information, like name or phone number, on that same page.
+## Built With
 
-## Where to find everything
+-   [React](https://reactjs.org/)
+-   [React-Redux](https://react-redux.js.org/)
+-   [Styled-components](https://styled-components.com/)
 
-Your task is to build out the project to the designs from this Figma link: https://www.figma.com/file/6gSAJpaedebKAUuaM4ekFR/Mahanoro-Station?node-id=4%3A38
 
-The data from the trips are available on this link : https://gist.githubusercontent.com/Pinois/36bb5fbf9b6a686f0baf4006dd137bca/raw/a40d8b3f696a75f388db286d57bdd05a925fa0e7/trips.json
+## Features
 
-## Building your project
+In this project, I work with html, react, redux and styled-component to create an app for trips in Mahanoro station. There are quite a lot of pages in this project. There is Mahanoro station page which is the home page where you can find a list of cities.
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+## How does it work
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). This will make it easier to share your code with the community if you need some help. If you're not sure how to do this, [have a read through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a URL. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, but I recommend you to use **Netlify**.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead how your data and reducers will look like.
+Each city is a link that lead users into another page where you can find more information about the trip. You can find the time when the bus is going to leave and how many seats are still available. There are button in where you click when you want to book some seats. If there is no seat available anymore, the button is disabled and you cannot click on it. Each button is going to lead the users to another page wwhich is the booking page. In this page, you can see how seats are still available, you can peak some seats. There are the driver's information there and also the fare.
 
-## Submit your project
+In the booking page, you can see a button which tells you how many seats you've booked. Clicking the button will open a modal where you are going to confirm your booking.
 
-You have until **Tuesday** at **15h30** to submit your github link and netlify link on this form : https://forms.gle/ikBWC2MokmdH4jdw6
+In the modal, you can find a button which says check your account. This button leads you to the last page which is the user's page or the My account page, where you can update your userName and your contact, and where you can find how many seats you have booked in a trip. You can cancel an old booking clicking the cancel button.
 
-**Have fun building!** 🚀
+
+## How To Use
+
+<!-- Example: -->
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/your-user-name/your-project-name
+
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm start
+```
+
+## Contact
+
+-   GitHub [@Mickaella](https://github.com/Mickaellah/mahanoro-station)

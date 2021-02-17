@@ -24,15 +24,20 @@ const ModalContainer = styled.div`
 `;
 
 const ModalBox = styled.div`
-    width: 300px;
+    width: 400px;
     background-color: white;
     padding: 48px;
     text-align: center;
-    transform: translate(-50%, -50%);
+    transform: translate(-45%, -50%);
     border: 5px solid #E53170;
 
     @media (min-width: 600px) {
-        transform: translate(-115%, 0%);
+        margin-block-start: 150%;
+    }
+
+    @media (min-width: 800px) {
+        transform: translate(-90%, 0%);
+        margin-block-start: 0;
     }
 `;
 

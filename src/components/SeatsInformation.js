@@ -26,6 +26,7 @@ const Heading = styled.header`
 
 const Header = styled.h1`
     margin-inline-start: 32px;
+    text-transform: uppercase;
 
     p {
         margin-block-start: 0;
@@ -96,6 +97,7 @@ const Button = styled.button`
     border: none;
     background: #E53170;
     color: white;
+    margin-inline-start: 48px;
 `;
 
 const TotalPriceContainer = styled.div`
@@ -111,8 +113,12 @@ const Price = styled.div`
     }
 
     b {
-        margin-block-start: 16px;
+        margin-block-start: 24px;
     }
+`;
+
+const TotalPrice = styled.p`
+    text-transform: uppercase;
 `;
 
 const Input = styled.input`
@@ -231,8 +237,8 @@ function SeatsInformation({cities, getCities}) {
                                         Book {numberOfCheckedCheckboxes} seats
                                     </Button>
                                     {numberOfCheckedCheckboxes === 0 
-                                        ? <p>Total: {city.price} Ar</p>
-                                        :<p>Total: {city.price * numberOfCheckedCheckboxes} Ar</p>
+                                        ? <TotalPrice>Total: {city.price} Ar</TotalPrice>
+                                        :<TotalPrice>Total: {city.price * numberOfCheckedCheckboxes} Ar</TotalPrice>
                                     }
                                 </TotalPriceContainer>
                                 <Modal onClose={() => setShow(false)} show={show} />

@@ -16,7 +16,12 @@ export function getUser(user) {
     }
 }
 
-export function updateUser(user) {
+export function updateUser(user = {
+    passengerFirstName: "",
+    passengerLastName: "",
+    passengerPhoneNumber: "",
+    id: Date.now()
+}) {
     return {
         type: "UPDATE_USER",
         value: user

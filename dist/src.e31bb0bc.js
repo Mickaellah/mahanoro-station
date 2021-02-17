@@ -38297,7 +38297,12 @@ function getUser(user) {
   };
 }
 
-function updateUser(user) {
+function updateUser(user = {
+  passengerFirstName: "",
+  passengerLastName: "",
+  passengerPhoneNumber: "",
+  id: Date.now()
+}) {
   return {
     type: "UPDATE_USER",
     value: user
@@ -38629,9 +38634,7 @@ function CityInformation({
       alt: "bus"
     }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
       weekday: "long"
-    })), /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleString("en-US", {
-      hour: "numeric"
-    }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, dateObject.toLocaleDateString()), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(AvailableSeats, null, availableSeats.length), " seats left")), availableSeats.length > 0 ? /*#__PURE__*/_react.default.createElement(Button, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    })), /*#__PURE__*/_react.default.createElement(DepartureTime, null, dateObject.toLocaleTimeString("en-US"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, dateObject.toLocaleDateString()), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(AvailableSeats, null, availableSeats.length), " seats left")), availableSeats.length > 0 ? /*#__PURE__*/_react.default.createElement(Button, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: `/${city.destination}/${city.id}`,
       type: "button"
     }, "Book a seat")) : /*#__PURE__*/_react.default.createElement(ButtonDisabled, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
@@ -38689,15 +38692,20 @@ const ModalContainer = _styledComponents.default.div`
     }
 `;
 const ModalBox = _styledComponents.default.div`
-    width: 300px;
+    width: 400px;
     background-color: white;
     padding: 48px;
     text-align: center;
-    transform: translate(-50%, -50%);
+    transform: translate(-45%, -50%);
     border: 5px solid #E53170;
 
     @media (min-width: 600px) {
-        transform: translate(-115%, 0%);
+        margin-block-start: 150%;
+    }
+
+    @media (min-width: 800px) {
+        transform: translate(-90%, 0%);
+        margin-block-start: 0;
     }
 `;
 const Container = _styledComponents.default.div`
@@ -38793,6 +38801,7 @@ const Heading = _styledComponents.default.header`
 `;
 const Header = _styledComponents.default.h1`
     margin-inline-start: 32px;
+    text-transform: uppercase;
 
     p {
         margin-block-start: 0;
@@ -38852,6 +38861,7 @@ const Button = _styledComponents.default.button`
     border: none;
     background: #E53170;
     color: white;
+    margin-inline-start: 48px;
 `;
 const TotalPriceContainer = _styledComponents.default.div`
     transform: translate(45%);
@@ -38865,8 +38875,11 @@ const Price = _styledComponents.default.div`
     }
 
     b {
-        margin-block-start: 16px;
+        margin-block-start: 24px;
     }
+`;
+const TotalPrice = _styledComponents.default.p`
+    text-transform: uppercase;
 `;
 const Input = _styledComponents.default.input`
     display: none;
@@ -38948,7 +38961,7 @@ function SeatsInformation({
       hour: "numeric"
     }), ", ", dateObject.toLocaleDateString())), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverName)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver's contact:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverContact)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Estimated duration:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.estimatedDuration)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Breaks:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.breaks)), /*#__PURE__*/_react.default.createElement(TotalPriceContainer, null, /*#__PURE__*/_react.default.createElement(Price, null, /*#__PURE__*/_react.default.createElement("p", null, city.price), " ", /*#__PURE__*/_react.default.createElement("b", null, "Ar/seat")), /*#__PURE__*/_react.default.createElement(Button, {
       onClick: () => setShow(true)
-    }, "Book ", numberOfCheckedCheckboxes, " seats"), numberOfCheckedCheckboxes === 0 ? /*#__PURE__*/_react.default.createElement("p", null, "Total: ", city.price, " Ar") : /*#__PURE__*/_react.default.createElement("p", null, "Total: ", city.price * numberOfCheckedCheckboxes, " Ar")), /*#__PURE__*/_react.default.createElement(_Modal.default, {
+    }, "Book ", numberOfCheckedCheckboxes, " seats"), numberOfCheckedCheckboxes === 0 ? /*#__PURE__*/_react.default.createElement(TotalPrice, null, "Total: ", city.price, " Ar") : /*#__PURE__*/_react.default.createElement(TotalPrice, null, "Total: ", city.price * numberOfCheckedCheckboxes, " Ar")), /*#__PURE__*/_react.default.createElement(_Modal.default, {
       onClose: () => setShow(false),
       show: show
     }))));
@@ -39012,6 +39025,7 @@ const Heading = _styledComponents.default.header`
 
     h1 {
         margin-inline-start: 32px;
+        font-size: 36px;
     }
 `;
 const UserName = _styledComponents.default.p`
@@ -39064,26 +39078,26 @@ function UserAccount({
     }, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
       src: _account.default,
       alt: "account"
-    }), /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement("p", null, "My account:"), /*#__PURE__*/_react.default.createElement(UserName, null, user.passengerFirstName, " ", user.passengerLastName))), /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My personnal informations:")), /*#__PURE__*/_react.default.createElement("form", {
+    }), /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement("p", null, "My account:"), /*#__PURE__*/_react.default.createElement(UserName, null, firstName, " ", lastName))), /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My personnal informations:")), /*#__PURE__*/_react.default.createElement("form", {
       onSubmit: handleSubmit
     }, /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "First name"), /*#__PURE__*/_react.default.createElement(Input, {
       type: "text",
       value: firstName,
       onChange: e => setFirstName(e.target.value),
       name: "firstName",
-      placeholder: user.passengerFirstName
+      placeholder: "Enter your firstName"
     })), /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "Last name"), /*#__PURE__*/_react.default.createElement(Input, {
       type: "text",
       value: lastName,
       onChange: e => setLastName(e.target.value),
       name: "lastName",
-      placeholder: user.passengerLastName
+      placeholder: "Enter your lastName"
     })), /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "Phone number"), /*#__PURE__*/_react.default.createElement(Input, {
       type: "tel",
       value: contact,
       onChange: e => setContact(e.target.value),
       name: "contact",
-      placeholder: user.passengerPhoneNumber
+      placeholder: "Type your contact"
     })), /*#__PURE__*/_react.default.createElement(Button, {
       type: "submit"
     }, "Update"))), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My booking:")))));

@@ -102,6 +102,7 @@ function CityInformation({cities, getCities}) {
 
                 const miliseconds = city.departureTime * 1000;
                 const dateObject = new Date(miliseconds);
+
                 return (
                     <CityContainer key={city.id}>
                         <img src={Bus} alt="bus" />
@@ -110,7 +111,7 @@ function CityInformation({cities, getCities}) {
                                 {dateObject.toLocaleString("en-US", {weekday: "long"})}
                             </DepartureTime>
                             <DepartureTime>
-                                {dateObject.toLocaleString("en-US", {hour: "numeric"})}
+                                {dateObject.toLocaleTimeString("en-US")}
                             </DepartureTime>
                         </div>
                         <div>

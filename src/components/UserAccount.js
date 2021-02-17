@@ -29,6 +29,7 @@ const Heading = styled.header`
 
     h1 {
         margin-inline-start: 32px;
+        font-size: 36px;
     }
 `;
 
@@ -85,7 +86,7 @@ function UserAccount({user, updateUser}) {
                             <img src={Account} alt="account" />
                             <h1>
                                 <p>My account:</p>
-                                <UserName>{user.passengerFirstName} {user.passengerLastName}</UserName>
+                                <UserName>{firstName} {lastName}</UserName>
                             </h1>
                         </Heading>
                         <Container>
@@ -98,15 +99,15 @@ function UserAccount({user, updateUser}) {
                                 <form onSubmit={handleSubmit}>
                                     <Fieldset>
                                         <label>First name</label>
-                                        <Input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} name="firstName" placeholder={user.passengerFirstName} />
+                                        <Input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} name="firstName" placeholder="Enter your firstName" />
                                     </Fieldset>
                                     <Fieldset>
                                         <label>Last name</label>
-                                        <Input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} name="lastName" placeholder={user.passengerLastName} />
+                                        <Input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} name="lastName" placeholder="Enter your lastName" />
                                     </Fieldset>
                                     <Fieldset>
                                         <label>Phone number</label>
-                                        <Input type="tel" value={contact} onChange={(e) => setContact(e.target.value)} name="contact" placeholder={user.passengerPhoneNumber} />
+                                        <Input type="tel" value={contact} onChange={(e) => setContact(e.target.value)} name="contact" placeholder="Type your contact" />
                                     </Fieldset>
                                     <Button type="submit">Update</Button>
                                 </form>

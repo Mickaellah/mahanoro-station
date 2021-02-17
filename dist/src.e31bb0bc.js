@@ -38627,7 +38627,7 @@ const Button = _styledComponents.default.div`
     padding-block: 16px;
     padding-inline: 32px;
     margin-block-start: 16px;
-    height: 18px;
+    height: 32px;
     border: none;
     background: #E53170;
     cursor: pointer;
@@ -38640,7 +38640,7 @@ const ButtonDisabled = _styledComponents.default.div`
     margin-block-start: 16px;
     padding-block: 16px;
     padding-inline: 32px;
-    height: 18px;
+    height: 32px;
     border: none;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), linear-gradient(0deg, #E53170, #E53170);
     cursor: not-allowed;
@@ -38849,6 +38849,10 @@ const MainContainer = _styledComponents.default.section`
 const Heading = _styledComponents.default.header`
     display: flex;
     flex-direction: row;
+
+    p {
+        margin-block-end: 0;
+    }
 `;
 const Header = _styledComponents.default.h1`
     margin-inline-start: 32px;
@@ -38883,6 +38887,7 @@ const Container = _styledComponents.default.div`
 const Destination = _styledComponents.default.p`
     color: #E53170;
     margin-block-end: 10px;
+    text-transform: capitalize;
 `;
 const DriverInformation = _styledComponents.default.article`
     text-align: start;
@@ -38912,7 +38917,7 @@ const Button = _styledComponents.default.button`
     border: none;
     background: #E53170;
     color: white;
-    margin-inline-start: 48px;
+    margin-inline-start: 88px;
 `;
 const TotalPriceContainer = _styledComponents.default.div`
     transform: translate(45%);

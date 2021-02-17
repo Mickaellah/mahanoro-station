@@ -43,7 +43,7 @@ const Button = styled.div`
     padding-block: 16px;
     padding-inline: 32px;
     margin-block-start: 16px;
-    height: 18px;
+    height: 32px;
     border: none;
     background: #E53170;
     cursor: pointer;
@@ -57,7 +57,7 @@ const ButtonDisabled = styled.div`
     margin-block-start: 16px;
     padding-block: 16px;
     padding-inline: 32px;
-    height: 18px;
+    height: 32px;
     border: none;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), linear-gradient(0deg, #E53170, #E53170);
     cursor: not-allowed;

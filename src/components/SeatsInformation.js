@@ -22,7 +22,12 @@ const MainContainer = styled.section`
 const Heading = styled.header`
     display: flex;
     flex-direction: row;
+
+    p {
+        margin-block-end: 0;
+    }
 `;
+
 
 const Header = styled.h1`
     margin-inline-start: 32px;
@@ -61,6 +66,7 @@ const Container = styled.div`
 const Destination = styled.p`
     color: #E53170;
     margin-block-end: 10px;
+    text-transform: capitalize;
 `;
 
 const DriverInformation = styled.article`
@@ -97,7 +103,7 @@ const Button = styled.button`
     border: none;
     background: #E53170;
     color: white;
-    margin-inline-start: 48px;
+    margin-inline-start: 88px;
 `;
 
 const TotalPriceContainer = styled.div`

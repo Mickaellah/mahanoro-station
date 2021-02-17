@@ -59,11 +59,8 @@ function CityLists({cities, getCities}) {
     }, []);
 
     const filterAntananarivoCity = cities.filter(city => city.destination === "Antananarivo");
-
     const filterVatomandryCity = cities.filter(city => city.destination === "Vatomandry");
-
     const filterToamasinaCity = cities.filter(city => city.destination === "Toamasina");
-
     const filterMoramangaCity = cities.filter(city => city.destination === "Moramanga");
 
     return (

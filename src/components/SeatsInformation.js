@@ -227,7 +227,7 @@ function SeatsInformation({cities, getCities}) {
                                     <Price>
                                         <p>{city.price}</p> <b>Ar/seat</b>
                                     </Price>
-                                    <Button onClick={() => { console.log("I am clicked"); setShow(true)}}>
+                                    <Button onClick={() => setShow(true)}>
                                         Book {numberOfCheckedCheckboxes} seats
                                     </Button>
                                     {numberOfCheckedCheckboxes === 0 

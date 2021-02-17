@@ -38947,10 +38947,7 @@ function SeatsInformation({
     }))), /*#__PURE__*/_react.default.createElement(DriverInformation, null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement(Header, null, "Trip informations:")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Departure time:"), /*#__PURE__*/_react.default.createElement(BoldText, null, dateObject.toLocaleString("en-US", {
       hour: "numeric"
     }), ", ", dateObject.toLocaleDateString())), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverName)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver's contact:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverContact)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Estimated duration:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.estimatedDuration)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Breaks:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.breaks)), /*#__PURE__*/_react.default.createElement(TotalPriceContainer, null, /*#__PURE__*/_react.default.createElement(Price, null, /*#__PURE__*/_react.default.createElement("p", null, city.price), " ", /*#__PURE__*/_react.default.createElement("b", null, "Ar/seat")), /*#__PURE__*/_react.default.createElement(Button, {
-      onClick: () => {
-        console.log("I am clicked");
-        setShow(true);
-      }
+      onClick: () => setShow(true)
     }, "Book ", numberOfCheckedCheckboxes, " seats"), numberOfCheckedCheckboxes === 0 ? /*#__PURE__*/_react.default.createElement("p", null, "Total: ", city.price, " Ar") : /*#__PURE__*/_react.default.createElement("p", null, "Total: ", city.price * numberOfCheckedCheckboxes, " Ar")), /*#__PURE__*/_react.default.createElement(_Modal.default, {
       onClose: () => setShow(false),
       show: show
@@ -39052,9 +39049,9 @@ function UserAccount({
   user,
   updateUser
 }) {
-  const [firstName, setFirstName] = (0, _react.useState)("");
-  const [lastName, setLastName] = (0, _react.useState)("");
-  const [contact, setContact] = (0, _react.useState)("");
+  const [firstName, setFirstName] = (0, _react.useState)("Clopedia");
+  const [lastName, setLastName] = (0, _react.useState)("Nomenjanahary");
+  const [contact, setContact] = (0, _react.useState)("0344523930");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -39188,7 +39185,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58705" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51435" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

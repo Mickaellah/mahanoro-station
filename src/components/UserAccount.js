@@ -67,9 +67,9 @@ const Button = styled.button`
 `;
 
 function UserAccount({user, updateUser}) {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [contact, setContact] = useState("");
+    const [firstName, setFirstName] = useState("Clopedia");
+    const [lastName, setLastName] = useState("Nomenjanahary");
+    const [contact, setContact] = useState("0344523930");
 
     function handleSubmit(e) {
         e.preventDefault();

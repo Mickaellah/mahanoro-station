@@ -28,11 +28,11 @@ const ModalBox = styled.div`
     background-color: white;
     padding: 48px;
     text-align: center;
-    transform: translate(-50%);
+    transform: translate(-50%, -50%);
     border: 5px solid #E53170;
 
     @media (min-width: 600px) {
-        transform: translate(-95%, 60%);
+        transform: translate(-115%, 0%);
     }
 `;
 

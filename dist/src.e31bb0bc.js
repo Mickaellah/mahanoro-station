@@ -38693,11 +38693,11 @@ const ModalBox = _styledComponents.default.div`
     background-color: white;
     padding: 48px;
     text-align: center;
-    transform: translate(-50%);
+    transform: translate(-50%, -50%);
     border: 5px solid #E53170;
 
     @media (min-width: 600px) {
-        transform: translate(-95%, 60%);
+        transform: translate(-115%, 0%);
     }
 `;
 const Container = _styledComponents.default.div`
@@ -38884,11 +38884,6 @@ function SeatsInformation({
   }, []);
   const [isChecked, setIsChecked] = (0, _react.useState)(false);
   const [show, setShow] = (0, _react.useState)(false);
-
-  function handleCheckbox() {
-    setIsChecked(!isChecked);
-  }
-
   const {
     id
   } = (0, _reactRouterDom.useParams)();
@@ -38933,6 +38928,11 @@ function SeatsInformation({
             alt: "seat"
           });
         }
+      }
+
+      function handleCheckbox() {
+        setIsChecked(!isChecked);
+        seat.isAvailable === !seat.isAvailable;
       }
 
       return /*#__PURE__*/_react.default.createElement("form", {

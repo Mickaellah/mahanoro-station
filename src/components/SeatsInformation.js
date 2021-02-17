@@ -130,10 +130,6 @@ function SeatsInformation({cities, getCities}) {
     const [isChecked, setIsChecked] = useState(false);
     const [show, setShow] = useState(false);
 
-    function handleCheckbox() {
-        setIsChecked(!isChecked);
-    }
-
     const {id} = useParams();
     const {destination} = useParams();
     
@@ -176,13 +172,17 @@ function SeatsInformation({cities, getCities}) {
                         </header>
                         <SeatsContainer>
                             {city.seats.map(seat => {
-
                                 function seats() {
                                     if (seat.isAvailable) {
                                         return <AvailableSeat src={chair} alt="seat" />
                                     } else {
                                         return <Seat src={chair} alt="seat" />
                                     }
+                                }
+
+                                function handleCheckbox() {
+                                    setIsChecked(!isChecked);
+                                    seat.isAvailable === !seat.isAvailable;
                                 }
 
                                 return (

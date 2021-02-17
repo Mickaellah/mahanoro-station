@@ -27,3 +27,10 @@ export function updateUser(user = {
         value: user
     }
 }
+
+export function getBookedSeats(seats) {
+    return {
+        type: "GET_BOOKED_SEATS",
+        value: seats
+    }
+}

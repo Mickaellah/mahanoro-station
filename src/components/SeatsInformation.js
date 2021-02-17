@@ -166,8 +166,8 @@ function SeatsInformation({cities, getCities}) {
             </Heading>
             <SeatInformationContainer>
             {seatInformation.map(city => {
-            const miliseconds = city.departureTime * 1000;
-            const dateObject = new Date(miliseconds);
+                const miliseconds = city.departureTime * 1000;
+                const dateObject = new Date(miliseconds);
                 return (
                 <Container key={city.id}>
                     <article>
@@ -211,7 +211,7 @@ function SeatsInformation({cities, getCities}) {
                             <div>
                                 <Information>
                                     <p>Departure time:</p>
-                                    <BoldText>{dateObject.toLocaleString("en-US", {hour: "numeric"})}, {dateObject.toLocaleDateString()}</BoldText>
+                                    <BoldText>{dateObject.toLocaleTimeString("en-US")}, {dateObject.toLocaleDateString()}</BoldText>
                                 </Information>
                                 <Information>
                                     <p>Driver:</p>

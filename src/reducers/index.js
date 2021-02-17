@@ -25,7 +25,18 @@ function user(state = {}, action) {
     }
 }
 
+function seats(state = [], action) {
+    switch(action.type) {
+        case "GET_BOOKED_SEATS": {
+            return action.value
+        }
+        default: 
+            return state
+    }
+}
+
 export default combineReducers({
     cities,
-    user
+    user,
+    seats
 });

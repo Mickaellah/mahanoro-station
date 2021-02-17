@@ -33301,6 +33301,25 @@ var _default = {
     passengerLastName: "Nomenjanahary",
     passengerPhoneNumber: "0344523930",
     id: Date.now()
+  }],
+  seats: [{
+    id: 1613549031352,
+    destination: "Antananarivo",
+    departureTime: 1613570400,
+    bookedSeats: 1,
+    price: 20000
+  }, {
+    id: 1613549056866,
+    destination: "Vatomandry",
+    departureTime: 1613278800,
+    bookedSeats: 2,
+    price: 6000
+  }, {
+    id: 1613549074237,
+    destination: "Toamasina",
+    departureTime: 1613397600,
+    bookedSeats: 4,
+    price: 20000
   }]
 };
 exports.default = _default;
@@ -33343,9 +33362,22 @@ function user(state = {}, action) {
   }
 }
 
+function seats(state = [], action) {
+  switch (action.type) {
+    case "GET_BOOKED_SEATS":
+      {
+        return action.value;
+      }
+
+    default:
+      return state;
+  }
+}
+
 var _default = (0, _redux.combineReducers)({
   cities,
-  user
+  user,
+  seats
 });
 
 exports.default = _default;
@@ -38278,6 +38310,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.getCities = getCities;
 exports.getUser = getUser;
 exports.updateUser = updateUser;
+exports.getBookedSeats = getBookedSeats;
 
 function getCities() {
   return async dispatch => {
@@ -38306,6 +38339,13 @@ function updateUser(user = {
   return {
     type: "UPDATE_USER",
     value: user
+  };
+}
+
+function getBookedSeats(seats) {
+  return {
+    type: "GET_BOOKED_SEATS",
+    value: seats
   };
 }
 },{}],"icons/city.svg":[function(require,module,exports) {
@@ -38957,9 +38997,7 @@ function SeatsInformation({
         value: isChecked,
         onChange: handleCheckbox
       }), seats()));
-    }))), /*#__PURE__*/_react.default.createElement(DriverInformation, null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement(Header, null, "Trip informations:")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Departure time:"), /*#__PURE__*/_react.default.createElement(BoldText, null, dateObject.toLocaleString("en-US", {
-      hour: "numeric"
-    }), ", ", dateObject.toLocaleDateString())), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverName)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver's contact:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverContact)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Estimated duration:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.estimatedDuration)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Breaks:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.breaks)), /*#__PURE__*/_react.default.createElement(TotalPriceContainer, null, /*#__PURE__*/_react.default.createElement(Price, null, /*#__PURE__*/_react.default.createElement("p", null, city.price), " ", /*#__PURE__*/_react.default.createElement("b", null, "Ar/seat")), /*#__PURE__*/_react.default.createElement(Button, {
+    }))), /*#__PURE__*/_react.default.createElement(DriverInformation, null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement(Header, null, "Trip informations:")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Departure time:"), /*#__PURE__*/_react.default.createElement(BoldText, null, dateObject.toLocaleTimeString("en-US"), ", ", dateObject.toLocaleDateString())), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverName)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Driver's contact:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.driverContact)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Estimated duration:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.estimatedDuration)), /*#__PURE__*/_react.default.createElement(Information, null, /*#__PURE__*/_react.default.createElement("p", null, "Breaks:"), /*#__PURE__*/_react.default.createElement(BoldText, null, city.breaks)), /*#__PURE__*/_react.default.createElement(TotalPriceContainer, null, /*#__PURE__*/_react.default.createElement(Price, null, /*#__PURE__*/_react.default.createElement("p", null, city.price), " ", /*#__PURE__*/_react.default.createElement("b", null, "Ar/seat")), /*#__PURE__*/_react.default.createElement(Button, {
       onClick: () => setShow(true)
     }, "Book ", numberOfCheckedCheckboxes, " seats"), numberOfCheckedCheckboxes === 0 ? /*#__PURE__*/_react.default.createElement(TotalPrice, null, "Total: ", city.price, " Ar") : /*#__PURE__*/_react.default.createElement(TotalPrice, null, "Total: ", city.price * numberOfCheckedCheckboxes, " Ar")), /*#__PURE__*/_react.default.createElement(_Modal.default, {
       onClose: () => setShow(false),
@@ -38997,6 +39035,8 @@ var _actions = require("../actions");
 
 var _account = _interopRequireDefault(require("../icons/account.svg"));
 
+var _notoV1_bus = _interopRequireDefault(require("../icons/noto-v1_bus.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -39006,13 +39046,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 const Content = _styledComponents.default.section`
     padding: 32px;
     @media (min-width: 700px) {
-        max-width: 800px;
+        max-width: 1114px;
         margin-inline-start: auto;
         margin-inline-end: auto;
     }
 `;
 const Container = _styledComponents.default.div`
-    @media (min-width: 600px) {
+    @media (min-width: 800px) {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 32px;
@@ -39058,10 +39098,43 @@ const Button = _styledComponents.default.button`
     background: #E53170;
     color: white;
 `;
+const Booking = _styledComponents.default.article`
+    margin-block-start: 64px;
+
+    @media (min-width: 700px) {
+        margin-block-start: 0;
+    }
+`;
+const ListItem = _styledComponents.default.li`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+        height: 48px;
+        margin-block-start: 40px;
+        background: #FF8906;
+        padding-block: 16px;
+        padding-inline: 32px;
+        border: none;
+        color: white;
+    }
+`;
+const DisabledButton = _styledComponents.default.button`
+    height: 48px;
+    margin-block-start: 40px;
+    background: #FF8906;
+    padding-block: 16px;
+    padding-inline: 32px;
+    border: none;
+    color: white;
+    cursor: not-allowed;
+`;
 
 function UserAccount({
   user,
-  updateUser
+  updateUser,
+  seats
 }) {
   const [firstName, setFirstName] = (0, _react.useState)("Clopedia");
   const [lastName, setLastName] = (0, _react.useState)("Nomenjanahary");
@@ -39072,49 +39145,63 @@ function UserAccount({
     updateUser();
   }
 
-  return /*#__PURE__*/_react.default.createElement("div", null, user.map(user => {
-    return /*#__PURE__*/_react.default.createElement(Content, {
-      key: user.id
-    }, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
-      src: _account.default,
-      alt: "account"
-    }), /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement("p", null, "My account:"), /*#__PURE__*/_react.default.createElement(UserName, null, firstName, " ", lastName))), /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My personnal informations:")), /*#__PURE__*/_react.default.createElement("form", {
-      onSubmit: handleSubmit
-    }, /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "First name"), /*#__PURE__*/_react.default.createElement(Input, {
-      type: "text",
-      value: firstName,
-      onChange: e => setFirstName(e.target.value),
-      name: "firstName",
-      placeholder: "Enter your firstName"
-    })), /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "Last name"), /*#__PURE__*/_react.default.createElement(Input, {
-      type: "text",
-      value: lastName,
-      onChange: e => setLastName(e.target.value),
-      name: "lastName",
-      placeholder: "Enter your lastName"
-    })), /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "Phone number"), /*#__PURE__*/_react.default.createElement(Input, {
-      type: "tel",
-      value: contact,
-      onChange: e => setContact(e.target.value),
-      name: "contact",
-      placeholder: "Type your contact"
-    })), /*#__PURE__*/_react.default.createElement(Button, {
-      type: "submit"
-    }, "Update"))), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My booking:")))));
-  }));
+  return /*#__PURE__*/_react.default.createElement(Content, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+    src: _account.default,
+    alt: "account"
+  }), /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement("p", null, "My account:"), /*#__PURE__*/_react.default.createElement(UserName, null, firstName, " ", lastName))), /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My personnal informations:")), /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "First name"), /*#__PURE__*/_react.default.createElement(Input, {
+    type: "text",
+    value: firstName,
+    onChange: e => setFirstName(e.target.value),
+    name: "firstName",
+    placeholder: "Enter your firstName"
+  })), /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "Last name"), /*#__PURE__*/_react.default.createElement(Input, {
+    type: "text",
+    value: lastName,
+    onChange: e => setLastName(e.target.value),
+    name: "lastName",
+    placeholder: "Enter your lastName"
+  })), /*#__PURE__*/_react.default.createElement(Fieldset, null, /*#__PURE__*/_react.default.createElement("label", null, "Phone number"), /*#__PURE__*/_react.default.createElement(Input, {
+    type: "tel",
+    value: contact,
+    onChange: e => setContact(e.target.value),
+    name: "contact",
+    placeholder: "Type your contact"
+  })), /*#__PURE__*/_react.default.createElement(Button, {
+    type: "submit"
+  }, "Update"))), /*#__PURE__*/_react.default.createElement(Booking, null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h3", null, "My bookings:")), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", null, seats.map(seat => {
+    const date = new Date(seat.departureTime * 1000);
+    return /*#__PURE__*/_react.default.createElement(ListItem, {
+      key: seat.id
+    }, /*#__PURE__*/_react.default.createElement("img", {
+      src: _notoV1_bus.default,
+      alt: "bus"
+    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, seat.destination), /*#__PURE__*/_react.default.createElement("p", null, date.toLocaleDateString(), ", ", /*#__PURE__*/_react.default.createElement("small", null, date.toLocaleString("en-US", {
+      hour: "numeric"
+    })))), /*#__PURE__*/_react.default.createElement("div", null, seat.bookedSeats > 1 ? /*#__PURE__*/_react.default.createElement("p", null, seat.bookedSeats, " seats") : /*#__PURE__*/_react.default.createElement("p", null, seat.bookedSeats, " seat"), /*#__PURE__*/_react.default.createElement("p", null, seat.price * seat.bookedSeats, " Ar")), /*#__PURE__*/_react.default.createElement("button", {
+      type: "button"
+    }, "Cancel"));
+  }))))));
+}
+
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+    seats: state.seats
+  };
 }
 
 const mapDispatchToProps = {
   getUser: _actions.getUser,
-  updateUser: _actions.updateUser
+  updateUser: _actions.updateUser,
+  getBookedSeats: _actions.getBookedSeats
 };
 
-var _default = (0, _reactRedux.connect)(state => ({
-  user: state.user
-}), mapDispatchToProps)(UserAccount);
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(UserAccount);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js","../icons/account.svg":"icons/account.svg"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js","../icons/account.svg":"icons/account.svg","../icons/noto-v1_bus.svg":"icons/noto-v1_bus.svg"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39199,7 +39286,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51435" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63432" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

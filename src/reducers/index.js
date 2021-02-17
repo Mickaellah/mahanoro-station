@@ -30,6 +30,8 @@ function seats(state = [], action) {
         case "GET_BOOKED_SEATS": {
             return action.value
         }
+        case "REMOVE_SEATS": 
+            return state.filter(seat => seat.id !== action.value);
         default: 
             return state
     }

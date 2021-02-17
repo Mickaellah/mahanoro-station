@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
 
-import {getUser, updateUser, getBookedSeats} from '../actions';
+import {getUser, updateUser, getBookedSeats, removeSeats} from '../actions';
 import Account from '../icons/account.svg';
 import Bus from '../icons/noto-v1_bus.svg';
 
@@ -103,7 +103,7 @@ const DisabledButton = styled.button`
     cursor: not-allowed;
 `;
 
-function UserAccount({user, updateUser, seats}) {
+function UserAccount({user, updateUser, seats, removeSeats}) {
     const [firstName, setFirstName] = useState("Clopedia");
     const [lastName, setLastName] = useState("Nomenjanahary");
     const [contact, setContact] = useState("0344523930");
@@ -170,7 +170,7 @@ function UserAccount({user, updateUser, seats}) {
                                             }
                                             <p>{seat.price * seat.bookedSeats} Ar</p>
                                         </div>
-                                        <button type='button'>Cancel</button>
+                                        <button onClick={() => removeSeats(seat.id)} type='button'>Cancel</button>
                                     </ListItem>
                                 )
                             })}
@@ -192,7 +192,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     getUser,
     updateUser,
-    getBookedSeats
+    getBookedSeats,
+    removeSeats
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (UserAccount);

@@ -34,3 +34,10 @@ export function getBookedSeats(seats) {
         value: seats
     }
 }
+
+export function removeSeats(id) {
+    return {
+        type: "REMOVE_SEATS",
+        value: id
+    }
+}

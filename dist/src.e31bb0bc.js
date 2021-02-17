@@ -33369,6 +33369,9 @@ function seats(state = [], action) {
         return action.value;
       }
 
+    case "REMOVE_SEATS":
+      return state.filter(seat => seat.id !== action.value);
+
     default:
       return state;
   }
@@ -38311,6 +38314,7 @@ exports.getCities = getCities;
 exports.getUser = getUser;
 exports.updateUser = updateUser;
 exports.getBookedSeats = getBookedSeats;
+exports.removeSeats = removeSeats;
 
 function getCities() {
   return async dispatch => {
@@ -38346,6 +38350,13 @@ function getBookedSeats(seats) {
   return {
     type: "GET_BOOKED_SEATS",
     value: seats
+  };
+}
+
+function removeSeats(id) {
+  return {
+    type: "REMOVE_SEATS",
+    value: id
   };
 }
 },{}],"icons/city.svg":[function(require,module,exports) {
@@ -39134,7 +39145,8 @@ const DisabledButton = _styledComponents.default.button`
 function UserAccount({
   user,
   updateUser,
-  seats
+  seats,
+  removeSeats
 }) {
   const [firstName, setFirstName] = (0, _react.useState)("Clopedia");
   const [lastName, setLastName] = (0, _react.useState)("Nomenjanahary");
@@ -39180,6 +39192,7 @@ function UserAccount({
     }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, seat.destination), /*#__PURE__*/_react.default.createElement("p", null, date.toLocaleDateString(), ", ", /*#__PURE__*/_react.default.createElement("small", null, date.toLocaleString("en-US", {
       hour: "numeric"
     })))), /*#__PURE__*/_react.default.createElement("div", null, seat.bookedSeats > 1 ? /*#__PURE__*/_react.default.createElement("p", null, seat.bookedSeats, " seats") : /*#__PURE__*/_react.default.createElement("p", null, seat.bookedSeats, " seat"), /*#__PURE__*/_react.default.createElement("p", null, seat.price * seat.bookedSeats, " Ar")), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => removeSeats(seat.id),
       type: "button"
     }, "Cancel"));
   }))))));
@@ -39195,7 +39208,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   getUser: _actions.getUser,
   updateUser: _actions.updateUser,
-  getBookedSeats: _actions.getBookedSeats
+  getBookedSeats: _actions.getBookedSeats,
+  removeSeats: _actions.removeSeats
 };
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(UserAccount);

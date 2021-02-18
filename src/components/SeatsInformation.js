@@ -136,6 +136,7 @@ const Label = styled.label`
 `;
 
 function SeatsInformation({cities, getCities}) {
+    const {id} = useParams();
     useEffect(() => {
         getCities();
     }, []);
@@ -143,7 +144,6 @@ function SeatsInformation({cities, getCities}) {
     const [isAvailable, setIsAvailable] = useState(true);
     const [show, setShow] = useState(false);
 
-    const {id} = useParams();
     const {destination} = useParams();
     
     const destinationCity = cities.filter((city) => city.destination.toLowerCase() == destination.toLowerCase());

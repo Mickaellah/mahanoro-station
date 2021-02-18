@@ -81,11 +81,10 @@ const AvailableSeats = styled.small`
 `;
 
 function CityInformation({cities, getCities}) {
+    const {destination} = useParams();
     useEffect(() => {
         getCities();
     }, []);
-
-    const {destination} = useParams();
     const cityInformation = cities.filter((city) => city.destination.toLowerCase() === destination.toLowerCase());
 
     return (

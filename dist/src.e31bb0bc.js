@@ -41889,12 +41889,12 @@ function CityInformation({
   cities,
   getCities
 }) {
-  (0, _react.useEffect)(() => {
-    getCities();
-  }, []);
   const {
     destination
   } = (0, _reactRouterDom.useParams)();
+  (0, _react.useEffect)(() => {
+    getCities();
+  }, []);
   const cityInformation = cities.filter(city => city.destination.toLowerCase() === destination.toLowerCase());
   return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
     src: _twemoji_alarmClock.default,
@@ -41929,7 +41929,7 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(CityInformation);
 
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js","../icons/twemoji_alarm-clock.svg":"icons/twemoji_alarm-clock.svg","../icons/noto-v1_bus.svg":"icons/noto-v1_bus.svg"}],"icons/confirming.svg":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js","../icons/twemoji_alarm-clock.svg":"icons/twemoji_alarm-clock.svg","../icons/noto-v1_bus.svg":"icons/noto-v1_bus.svg"}],"icons/confirming.svg":[function(require,module,exports) {
 module.exports = "/confirming.0116ee27.svg";
 },{}],"components/Modal.js":[function(require,module,exports) {
 "use strict";
@@ -42173,15 +42173,15 @@ function SeatsInformation({
   cities,
   getCities
 }) {
+  const {
+    id
+  } = (0, _reactRouterDom.useParams)();
   (0, _react.useEffect)(() => {
     getCities();
   }, []);
   const [isChecked, setIsChecked] = (0, _react.useState)(false);
   const [isAvailable, setIsAvailable] = (0, _react.useState)(true);
   const [show, setShow] = (0, _react.useState)(false);
-  const {
-    id
-  } = (0, _reactRouterDom.useParams)();
   const {
     destination
   } = (0, _reactRouterDom.useParams)();
@@ -42257,7 +42257,7 @@ var _default = (0, _reactRedux.connect)(state => ({
 }), mapDispatchToProps)(SeatsInformation);
 
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js","./Modal":"components/Modal.js","../icons/seat.svg":"icons/seat.svg","../icons/noto-v1_bus.svg":"icons/noto-v1_bus.svg"}],"icons/account.svg":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../actions":"actions/index.js","./Modal":"components/Modal.js","../icons/seat.svg":"icons/seat.svg","../icons/noto-v1_bus.svg":"icons/noto-v1_bus.svg"}],"icons/account.svg":[function(require,module,exports) {
 module.exports = "/account.4f49975b.svg";
 },{}],"components/UserAccount.js":[function(require,module,exports) {
 "use strict";
@@ -42446,7 +42446,7 @@ const mapDispatchToProps = {
 var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(UserAccount);
 
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js","../icons/account.svg":"icons/account.svg","../icons/noto-v1_bus.svg":"icons/noto-v1_bus.svg"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../actions":"actions/index.js","../icons/account.svg":"icons/account.svg","../icons/noto-v1_bus.svg":"icons/noto-v1_bus.svg"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42531,7 +42531,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53093" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54258" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
